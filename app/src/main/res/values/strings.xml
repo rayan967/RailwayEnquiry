@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Railway Enquiry</string>
+    <string name="icon">icon</string>
+    <string name="card1_text">Live Train Status</string>
+    <string name="card1_text_hint">Train Name/No.</string>
+    <string name="card2_text">Train Route</string>
+    <string name="card3_text">Train B/W Stations</string>
+    <string name="card4_text">Fare Enquiry</string>
+    <string name="card5_text">Train Schedule</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/card1"
+                android:layout_width="152dp"
+                android:layout_height="176dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="48dp"
+                android:layout_toStartOf="@+id/card2"
+                android:background="@drawable/card_main_bg"
+                android:elevation="2dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:orientation="vertical"
+                android:transitionName="card1_transition"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.124"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.088"
+                tools:ignore="UnusedAttribute"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="94dp"
+                    android:layout_height="84dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="-1dp"
+                    android:contentDescription="@string/icon"
+                    android:layout_gravity="center"
+                    android:transitionName="card1image"
+                    app:srcCompat="@mipmap/livestatus" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    style="@style/CardText"
+                    android:layout_width="132dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginBottom="38dp"
+                    android:text="@string/card1_text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/card2"
+                android:layout_width="152dp"
+                android:layout_height="176dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="28dp"
+                android:background="@drawable/card_main_bg"
+                android:clickable="true"
+                android:elevation="2dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:transitionName="card2_transition"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.555"
+                app:layout_constraintStart_toEndOf="@+id/card1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.088"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="84dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="-1dp"
+                    android:contentDescription="@string/icon"
+                    app:srcCompat="@mipmap/trainroute" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    style="@style/CardText"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginBottom="38dp"
+                    android:text="@string/card2_text" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/card3"
+                android:layout_width="152dp"
+                android:layout_height="176dp"
+                android:layout_below="@+id/card1"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="48dp"
+                android:layout_toStartOf="@+id/card4"
+                android:background="@drawable/card_main_bg"
+                android:clickable="true"
+                android:elevation="2dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:transitionName="card3_transition"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.555"
+                app:layout_constraintStart_toEndOf="@+id/card1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.088"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="84dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="-1dp"
+                    android:contentDescription="@string/icon"
+                    app:srcCompat="@mipmap/transfer_within_a_station" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    style="@style/CardText"
+                    android:layout_width="76dp"
+                    android:layout_height="38dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginBottom="38dp"
+                    android:text="@string/card3_text" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/card4"
+                android:layout_width="152dp"
+                android:layout_height="176dp"
+                android:layout_below="@+id/card2"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="28dp"
+                android:background="@drawable/card_main_bg"
+                android:clickable="true"
+                android:elevation="2dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:transitionName="card4_transition"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.555"
+                app:layout_constraintStart_toEndOf="@+id/card3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.088"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="84dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="-1dp"
+                    android:contentDescription="@string/icon"
+                    app:srcCompat="@mipmap/fare" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    style="@style/CardText"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginBottom="38dp"
+                    android:text="@string/card4_text" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/card5"
+                android:layout_width="152dp"
+                android:layout_height="176dp"
+                android:layout_below="@+id/card3"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="231dp"
+                android:background="@drawable/card_main_bg"
+                android:clickable="true"
+                android:elevation="2dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:transitionName="card5_transition"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.555"
+                app:layout_constraintStart_toEndOf="@+id/card3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.088"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="84dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="-1dp"
+                    android:contentDescription="@string/icon"
+                    app:srcCompat="@mipmap/schedule" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    style="@style/CardText"
+                    android:layout_width="112dp"
+                    android:layout_height="38dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginBottom="38dp"
+                    android:text="@string/card5_text" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>
