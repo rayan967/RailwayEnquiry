@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/frame">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rl"
+        android:background="@drawable/card_main_bg"
+        android:transitionName="card1_transition">
+
+        <RelativeLayout
+            android:id="@+id/rl2"
+            android:layout_width="wrap_content"
+            android:layout_height="245dp"
+            android:layout_below="@+id/imageView8"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="74dp"
+            android:layout_marginTop="140dp"
+            android:layout_marginEnd="73dp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/livestatuscard"
+                android:layout_width="match_parent"
+                android:layout_height="172dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/card_secondary_bg"
+                android:orientation="vertical"
+                android:transitionName="lll"
+                android:visibility="visible">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textinputlayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:hint="@string/card1_text_hint"
+                    android:textColorHint="@color/white"
+                    android:theme="@style/Theme.App.Base"
+                    app:boxStrokeColor="@color/white"
+                    app:errorEnabled="true">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/autocomplete_card1"
+                        android:layout_width="240dp"
+                        android:layout_height="44dp"
+                        android:completionThreshold="3"
+                        android:textColor="@color/white" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="65dp"
+                    android:layout_height="51dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:src="@mipmap/calendar_icon" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="16-01-2020"
+                    android:textColor="@color/white" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/livestatuscard"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="82dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="82dp"
+                android:clickable="true"
+                android:foreground="@mipmap/buttonicon"
+                android:visibility="visible" />
+
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="84dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginEnd="319dp"
+            android:src="@mipmap/livestatus"
+            android:transitionName="card1image" />
+
+
+        <TextView
+            android:id="@+id/textView7"
+            style="@style/CardText"
+            android:layout_width="wrap_content"
+            android:layout_height="63dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="101dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="22dp"
+            android:text="Live Train Status"
+            android:textSize="36dp"
+            android:transitionName="cardtext1"/>
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>

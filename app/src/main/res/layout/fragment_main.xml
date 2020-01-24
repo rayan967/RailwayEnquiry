@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainFragment">
+    tools:context=".Fragments.MainFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="fill_parent"
@@ -61,7 +61,8 @@
                     android:layout_marginTop="22dp"
                     android:layout_marginEnd="22dp"
                     android:layout_marginBottom="38dp"
-                    android:text="@string/card1_text" />
+                    android:text="@string/card1_text"
+                    android:transitionName="cardtext1"/>
             </LinearLayout>
 
             <LinearLayout

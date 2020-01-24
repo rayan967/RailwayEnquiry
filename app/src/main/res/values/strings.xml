@@ -8,4 +8,9 @@
     <string name="card4_text">Fare Enquiry</string>
     <string name="card5_text">Train Schedule</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="daily">Daily</string>
+    <string name="weekly">Weekly</string>
+    <string name="unavailable">Train not available</string>
+
+    <string name="stat"><![CDATA[<b>Status:</b> Departed from Bale at 22:18 22-Jan. 451 Kms. ahead of C Shivaji Maharaj T. ]]></string>
 </resources>

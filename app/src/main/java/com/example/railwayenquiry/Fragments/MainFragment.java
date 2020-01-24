@@ -1,21 +1,27 @@
-package com.example.railwayenquiry;
+package com.example.railwayenquiry.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.util.Pair;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.transition.Slide;
+import android.transition.TransitionInflater;
+
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.example.railwayenquiry.R;
+
+import static android.content.ContentValues.TAG;
 
 
 public class MainFragment extends Fragment {
@@ -46,6 +52,8 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+        setSharedElementReturnTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -68,19 +76,20 @@ public class MainFragment extends Fragment {
         final Context context=getActivity();
         final ImageView imageView=(ImageView) getView().findViewById(R.id.imageView);
         final LinearLayout ll=(LinearLayout) getView().findViewById(R.id.card1);
+        final TextView tv=(TextView) getView().findViewById(R.id.textView);
 
         ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                Pair<View, String> p1 = Pair.create((View)ll, ViewCompat.getTransitionName(ll));
+ /*               Pair<View, String> p1 = Pair.create((View)ll, ViewCompat.getTransitionName(ll));
                 Pair<View, String> p2 = Pair.create((View)imageView, ViewCompat.getTransitionName(imageView));
                 Pair[] p={p1,p2};
                 Intent intent = new Intent(context, LiveStatus.class);
                 ActivityOptionsCompat options = ActivityOptionsCompat.
                         makeSceneTransitionAnimation(getActivity(), p2);
-                ActivityCompat.startActivity(context, intent, options.toBundle());
+                ActivityCompat.startActivity(context, intent, options.toBundle());*/
 
 /*
                 androidx.core.app.ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,
@@ -94,20 +103,18 @@ public class MainFragment extends Fragment {
                         null, // NavOptions
                         extras);*/
 
-/*                live_status_fragment simpleFragmentB = live_status_fragment.newInstance();
-                simpleFragmentB.setSharedElementEnterTransition(new DetailsTransition());
-                simpleFragmentB.setSharedElementReturnTransition(new DetailsTransition());
-
-                // The rest of the views are just fading in/out.
-                simpleFragmentB.setEnterTransition(new Fade());
-
-
+                LiveStatusFragment simpleFragmentB = LiveStatusFragment.newInstance(null,null);
+                MainFragment simpleFragmentA=(MainFragment)getFragmentManager().findFragmentByTag("MainFragment");
+                simpleFragmentB.setExitTransition(new Slide(Gravity.TOP));
                 FragmentTransaction ft = getFragmentManager().beginTransaction()
-                        .replace(R.id.f1content, simpleFragmentB)
+                        .replace(R.id.f1content,simpleFragmentB,"LiveStatusFragment")
                         .addToBackStack(TAG)
                         .addSharedElement(ll, ViewCompat.getTransitionName(ll));
+                ft.addSharedElement(imageView,ViewCompat.getTransitionName(imageView));
+                ft.addSharedElement(tv,ViewCompat.getTransitionName(tv));
 
-                ft.commit();*/
+
+                ft.commit();
 
           /*      FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder()
                         .addSharedElement(imageView, ViewCompat.getTransitionName(imageView))
@@ -150,4 +157,5 @@ public class MainFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }
