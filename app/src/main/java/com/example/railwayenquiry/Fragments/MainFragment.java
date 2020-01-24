@@ -25,19 +25,18 @@ import static android.content.ContentValues.TAG;
 
 
 public class MainFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
     public MainFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -82,27 +81,6 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
- /*               Pair<View, String> p1 = Pair.create((View)ll, ViewCompat.getTransitionName(ll));
-                Pair<View, String> p2 = Pair.create((View)imageView, ViewCompat.getTransitionName(imageView));
-                Pair[] p={p1,p2};
-                Intent intent = new Intent(context, LiveStatus.class);
-                ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation(getActivity(), p2);
-                ActivityCompat.startActivity(context, intent, options.toBundle());*/
-
-/*
-                androidx.core.app.ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,
-                        Pair.create((View)imageView, ViewCompat.getTransitionName(imageView)),
-                        Pair.create((View)ll, ViewCompat.getTransitionName(ll)));
-                ActivityNavigator.Extras extras = new ActivityNavigator.Extras.Builder()
-                        .setActivityOptions(options)
-                        .build();
-                Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment).navigate(R.id.nav_live_status,
-                        null, // Bundle of args
-                        null, // NavOptions
-                        extras);*/
-
                 LiveStatusFragment simpleFragmentB = LiveStatusFragment.newInstance(null,null);
                 MainFragment simpleFragmentA=(MainFragment)getFragmentManager().findFragmentByTag("MainFragment");
                 simpleFragmentB.setExitTransition(new Slide(Gravity.TOP));
@@ -115,21 +93,10 @@ public class MainFragment extends Fragment {
 
 
                 ft.commit();
-
-          /*      FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder()
-                        .addSharedElement(imageView, ViewCompat.getTransitionName(imageView))
-                        .addSharedElement(ll, ViewCompat.getTransitionName(ll))
-                        .build();
-                Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment).navigate(R.id.nav_frag_live_status,
-                        null, // Bundle of args
-                        null, // NavOptions
-                        extras);*/
-
             }
         });
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

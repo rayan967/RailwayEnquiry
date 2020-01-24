@@ -87,9 +87,9 @@ public class LiveStatusFragment2 extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState){
         RecyclerView recyclerView = (RecyclerView) getView().findViewById(R.id.recyclerview);
 
-        TextView myTextView = (TextView) getView().findViewById(R.id.textView9);
-        myTextView.setText(Html.fromHtml( getResources().getString(R.string.stat) ));
-
+        final TextView Status = (TextView) getView().findViewById(R.id.textView9);
+        Log.d("Resources",getResources().getString(R.string.stat));
+        final TextView Title= getView().findViewById(R.id.textView11);
 
         mAdapter = new TimeTableAdapter(TTList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -103,6 +103,21 @@ public class LiveStatusFragment2 extends Fragment {
             @Override
             public void onChanged(@Nullable final List<TimeTableItem> words) {
                 mAdapter.setRows(words);
+            }
+        });
+
+
+        mTTViewModel.getProperties().observe(this, new Observer<HashMap<String, String>>() {
+            @Override
+            public void onChanged(@Nullable final HashMap<String, String> stringHashMap) {
+                String train_number=stringHashMap.get("number");
+                String schedule=stringHashMap.get("schedule");
+                String title=train_number+" - Schedule - "+schedule;
+                Title.setText(title);
+                String status=stringHashMap.get("status");
+                status="<b>Status:</b> "+status;
+                Status.setText(Html.fromHtml(status));
+                Log.d("Values",stringHashMap.get("name"));
             }
         });
 

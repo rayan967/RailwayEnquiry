@@ -2,14 +2,11 @@ package com.example.railwayenquiry.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import com.example.railwayenquiry.BooVariable;
+
 import com.example.railwayenquiry.R;
 import com.google.android.material.textfield.TextInputLayout;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -32,10 +29,7 @@ import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import static android.content.ContentValues.TAG;
 
@@ -51,8 +45,6 @@ public class LiveStatusFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    BooVariable bv = new BooVariable();
-
     private OnFragmentInteractionListener mListener;
 
     public LiveStatusFragment() {
@@ -106,7 +98,7 @@ public class LiveStatusFragment extends Fragment {
         return _rootView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -117,22 +109,7 @@ public class LiveStatusFragment extends Fragment {
     public void onViewCreated(View view,
                               Bundle savedInstanceState)
     {
-       // AsyncTaskWait w=new AsyncTaskWait();
-      //  w.execute();
 
-
-                bv.setListener(new BooVariable.ChangeListener() {
-                    @Override
-                    public void onChange() {
-                        LinearLayout ll = (LinearLayout) getView().findViewById(R.id.livestatuscard);
-                        RelativeLayout rl = (RelativeLayout) getView().findViewById(R.id.rl);
-                        Button button = (Button) getView().findViewById(R.id.button);
-                        Slide slide = new Slide();
-                        TransitionManager.beginDelayedTransition(rl, slide);
-                        ll.setVisibility(View.VISIBLE);
-                        button.setVisibility(View.VISIBLE);
-                    }
-                });
         final AutoCompleteTextView textView = (AutoCompleteTextView) getView().findViewById(R.id.autocomplete_card1);
         final String[] countries = getResources().getStringArray(R.array.train_list);
         final List<String> trainlist=new ArrayList<>(Arrays.asList(countries));
@@ -194,39 +171,6 @@ public class LiveStatusFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-    }
-
-    private class AsyncTaskWait extends AsyncTask<String, String, String> {
-
-
-
-        @Override
-        protected String doInBackground(String... params) {
-            try{Thread.sleep(100);}catch (Exception e){}
-            return "Done";
-        }
-
-
-        @Override
-        protected void onPostExecute(String result) {
-            bv.setBoo(true);
-        }
-
-
-        @Override
-        protected void onPreExecute() {
-
-        }
-
-
-        @Override
-        protected void onProgressUpdate(String... text) {
-
-        }
-    }
-
-    public void setMessage(String msg){
-        System.out.print("got it");
     }
 
 }
