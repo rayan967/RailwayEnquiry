@@ -1,5 +1,6 @@
 package com.example.railwayenquiry.Fragments;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,14 +22,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -111,10 +118,10 @@ public class LiveStatusFragment extends Fragment {
     {
 
         final AutoCompleteTextView textView = (AutoCompleteTextView) getView().findViewById(R.id.autocomplete_card1);
-        final String[] countries = getResources().getStringArray(R.array.train_list);
-        final List<String> trainlist=new ArrayList<>(Arrays.asList(countries));
+        final String[] trains = getResources().getStringArray(R.array.train_list);
+        final List<String> trainlist=new ArrayList<>(Arrays.asList(trains));
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, countries);
+                new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, trains);
         textView.setAdapter(adapter);
 
 
@@ -138,6 +145,39 @@ public class LiveStatusFragment extends Fragment {
                     TextInputLayout til = (TextInputLayout) getView().findViewById(R.id.textinputlayout1);
                     til.setError("\t Please select correct train");
                 }
+            }
+        });
+
+
+        final TextView date = (TextView) getView().findViewById(R.id.dateview);
+        ImageView calendaricon= getView().findViewById(R.id.imageView6);
+        final Calendar c = Calendar.getInstance();
+        final int mYear = c.get(Calendar.YEAR);
+        final int mMonth = c.get(Calendar.MONTH);
+        final int mDay = c.get(Calendar.DAY_OF_MONTH);
+        if((mMonth+1)<10)
+            date.setText(mDay + "-0" + (mMonth+1) + "-" + mYear);
+        else
+            date.setText(mDay + "-" + (mMonth+1) + "-" + mYear);
+        calendaricon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // calender class's instance and get current date , month and year from calender
+                // date picker dialog
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                if((monthOfYear+1)<10)
+                                    date.setText(dayOfMonth + "-0" + (monthOfYear + 1) + "-" + year);
+                                else
+                                    date.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
             }
         });
 

@@ -1,5 +1,6 @@
 package com.example.railwayenquiry.Fragments;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import com.example.railwayenquiry.Adapters.TimeTableItem;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
+
 
 
 /**
@@ -86,9 +89,7 @@ public class LiveStatusFragment2 extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
         RecyclerView recyclerView = (RecyclerView) getView().findViewById(R.id.recyclerview);
-
         final TextView Status = (TextView) getView().findViewById(R.id.textView9);
-        Log.d("Resources",getResources().getString(R.string.stat));
         final TextView Title= getView().findViewById(R.id.textView11);
 
         mAdapter = new TimeTableAdapter(TTList);

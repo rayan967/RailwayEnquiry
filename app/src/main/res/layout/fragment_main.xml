@@ -95,7 +95,8 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="-1dp"
                     android:contentDescription="@string/icon"
-                    app:srcCompat="@mipmap/trainroute" />
+                    app:srcCompat="@mipmap/trainroute"
+                    android:transitionName="trainroute"/>
 
                 <TextView
                     android:id="@+id/textView2"
@@ -107,7 +108,8 @@
                     android:layout_marginTop="22dp"
                     android:layout_marginEnd="22dp"
                     android:layout_marginBottom="38dp"
-                    android:text="@string/card2_text" />
+                    android:text="@string/card2_text"
+                    android:transitionName="cardtext2"/>
 
             </LinearLayout>
 

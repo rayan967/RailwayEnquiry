@@ -21,11 +21,12 @@ public class PropertiesRepository {
     {
         try {
             GetProperties task = new GetProperties();
-            HashMap<String, String> propertyList = task.execute().get();
-            mProperties.setValue(propertyList);
+            task.execute();
         }
         catch (Exception e)
-        {}
+        {
+            Log.e("Exception:",e.toString());
+        }
     }
 
     public MutableLiveData<HashMap<String,String>> getProperties()
@@ -34,7 +35,7 @@ public class PropertiesRepository {
     }
 
 
-    private static class GetProperties extends AsyncTask<HashMap<String,String>, HashMap<String,String>, HashMap<String,String>> {
+    private class GetProperties extends AsyncTask<HashMap<String,String>, HashMap<String,String>, HashMap<String,String>> {
 
 
         @Override
@@ -74,6 +75,7 @@ public class PropertiesRepository {
         @Override
         protected void onPostExecute(HashMap<String,String> hm) {
             super.onPostExecute(hm);
+            mProperties.setValue(hm);
         }
     }
 

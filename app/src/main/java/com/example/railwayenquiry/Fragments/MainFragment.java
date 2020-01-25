@@ -82,7 +82,6 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
 
                 LiveStatusFragment simpleFragmentB = LiveStatusFragment.newInstance(null,null);
-                MainFragment simpleFragmentA=(MainFragment)getFragmentManager().findFragmentByTag("MainFragment");
                 simpleFragmentB.setExitTransition(new Slide(Gravity.TOP));
                 FragmentTransaction ft = getFragmentManager().beginTransaction()
                         .replace(R.id.f1content,simpleFragmentB,"LiveStatusFragment")
@@ -95,6 +94,31 @@ public class MainFragment extends Fragment {
                 ft.commit();
             }
         });
+
+
+        final ImageView imageView2=(ImageView) getView().findViewById(R.id.imageView2);
+        final LinearLayout ll2=(LinearLayout) getView().findViewById(R.id.card2);
+        final TextView tv2=(TextView) getView().findViewById(R.id.textView2);
+
+        ll2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TrainRouteFragment simpleFragmentB = TrainRouteFragment.newInstance(null,null);
+                simpleFragmentB.setExitTransition(new Slide(Gravity.TOP));
+                FragmentTransaction ft = getFragmentManager().beginTransaction()
+                        .replace(R.id.f1content,simpleFragmentB,"LiveStatusFragment")
+                        .addToBackStack(TAG)
+                        .addSharedElement(ll2, ViewCompat.getTransitionName(ll2));
+                ft.addSharedElement(imageView2,ViewCompat.getTransitionName(imageView2));
+                ft.addSharedElement(tv2,ViewCompat.getTransitionName(tv2));
+                ft.commit();
+            }
+        });
+
+
+
+
     }
 
     public void onButtonPressed(Uri uri) {

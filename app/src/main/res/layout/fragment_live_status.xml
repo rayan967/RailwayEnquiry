@@ -40,7 +40,7 @@
                 android:background="@drawable/card_secondary_bg"
                 android:orientation="vertical"
                 android:transitionName="lll"
-                android:visibility="visible">
+                android:visibility="invisible">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textinputlayout1"
@@ -71,11 +71,13 @@
                     android:layout_height="51dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="15dp"
+                    android:clickable="true"
                     android:contentDescription="@string/icon"
+                    android:focusable="true"
                     android:src="@mipmap/calendar_icon" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/dateview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -98,7 +100,7 @@
                 android:layout_marginEnd="82dp"
                 android:clickable="true"
                 android:foreground="@mipmap/buttonicon"
-                android:visibility="visible" />
+                android:visibility="invisible" />
 
 
         </RelativeLayout>

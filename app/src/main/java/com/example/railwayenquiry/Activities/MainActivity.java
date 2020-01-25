@@ -12,9 +12,10 @@ import android.os.Bundle;
 import com.example.railwayenquiry.Fragments.LiveStatusFragment;
 import com.example.railwayenquiry.Fragments.LiveStatusFragment2;
 import com.example.railwayenquiry.Fragments.MainFragment;
+import com.example.railwayenquiry.Fragments.TrainRouteFragment;
 import com.example.railwayenquiry.R;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener, LiveStatusFragment.OnFragmentInteractionListener, LiveStatusFragment2.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener, LiveStatusFragment.OnFragmentInteractionListener, LiveStatusFragment2.OnFragmentInteractionListener, TrainRouteFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.add(R.id.f1content,mFragment,"MainFragment");
         transaction.commit();
+        getSupportActionBar();
 
     }
     @Override
