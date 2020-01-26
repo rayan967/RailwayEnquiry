@@ -13,9 +13,10 @@ import com.example.railwayenquiry.Fragments.LiveStatusFragment;
 import com.example.railwayenquiry.Fragments.LiveStatusFragment2;
 import com.example.railwayenquiry.Fragments.MainFragment;
 import com.example.railwayenquiry.Fragments.TrainRouteFragment;
+import com.example.railwayenquiry.Fragments.TrainRouteFragment2;
 import com.example.railwayenquiry.R;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener, LiveStatusFragment.OnFragmentInteractionListener, LiveStatusFragment2.OnFragmentInteractionListener, TrainRouteFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener, LiveStatusFragment.OnFragmentInteractionListener, LiveStatusFragment2.OnFragmentInteractionListener, TrainRouteFragment.OnFragmentInteractionListener, TrainRouteFragment2.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

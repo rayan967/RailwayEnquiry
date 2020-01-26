@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.transition.Slide;
 import android.transition.Transition;
@@ -22,10 +23,13 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
 import com.example.railwayenquiry.R;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 public class TrainRouteFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -101,6 +105,31 @@ public class TrainRouteFragment extends Fragment {
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, trains);
         textView.setAdapter(adapter);
+
+
+
+        Button button=(Button) getView().findViewById(R.id.button2);
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+
+                String train=textView.getText().toString();
+                if(trainlist.contains(train)) {
+                    TrainRouteFragment2 simpleFragmentB = TrainRouteFragment2.newInstance(null, null);
+                    simpleFragmentB.setEnterTransition(new Slide(Gravity.BOTTOM));
+                    FragmentTransaction ft = getFragmentManager().beginTransaction()
+                            .replace(R.id.f1content, simpleFragmentB)
+                            .addToBackStack(TAG);
+                    ft.commit();
+                }
+                else
+                {
+                    TextInputLayout til = (TextInputLayout) getView().findViewById(R.id.textInputLayout);
+                    til.setError("\t Please select correct train");
+                }
+            }
+        });
     }
 
     @Override
