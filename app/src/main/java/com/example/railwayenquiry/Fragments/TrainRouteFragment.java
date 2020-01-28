@@ -1,6 +1,7 @@
 package com.example.railwayenquiry.Fragments;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -17,10 +18,12 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.animation.TranslateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ScrollView;
 
 import com.example.railwayenquiry.R;
 import com.google.android.material.textfield.TextInputLayout;
@@ -40,6 +43,7 @@ public class TrainRouteFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private View _rootView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -85,8 +89,9 @@ public class TrainRouteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_train_route, container, false);
+        if(_rootView==null)
+        _rootView= inflater.inflate(R.layout.fragment_train_route, container, false);
+        return _rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -97,8 +102,30 @@ public class TrainRouteFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState)
+    public void onViewCreated(final View view, Bundle savedInstanceState)
     {
+
+        final ScrollView scroll=view.findViewById(R.id.scrollView);
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                Rect r = new Rect();
+                view.getWindowVisibleDisplayFrame(r);
+                if (view.getRootView().getHeight() - (r.bottom - r.top) > 500) {
+                    scroll.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            scroll.fullScroll(View.FOCUS_DOWN);
+                        }
+                    },100);
+
+                } else {
+
+                }
+            }
+        });
+
+
         final AutoCompleteTextView textView = (AutoCompleteTextView) getView().findViewById(R.id.autocomplete_card2);
         final String[] trains = getResources().getStringArray(R.array.train_list);
         final List<String> trainlist=new ArrayList<>(Arrays.asList(trains));
@@ -142,6 +169,15 @@ public class TrainRouteFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+
+    @Override
+    public void onDestroyView() {
+        if (_rootView.getParent() != null) {
+            ((ViewGroup)_rootView.getParent()).removeView(_rootView);
+        }
+        super.onDestroyView();
+    }
+
 
     @Override
     public void onDetach() {

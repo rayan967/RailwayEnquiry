@@ -14,10 +14,12 @@ import java.util.List;
 public class TimeTableAdapter extends RecyclerView.Adapter<TimeTableAdapter.MyViewHolder> {
 
     private List<TimeTableItem> TTList;
+    public boolean live;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView station_name,arrival_time,departure_time;
-        public View visited;
+        public View visited,line;
+
 
         public MyViewHolder(View view) {
             super(view);
@@ -25,6 +27,8 @@ public class TimeTableAdapter extends RecyclerView.Adapter<TimeTableAdapter.MyVi
             arrival_time = (TextView) view.findViewById(R.id.arrivaltime);
             departure_time = (TextView) view.findViewById(R.id.departuretime);
             visited = (View) view.findViewById(R.id.view6);
+            line=(View) view.findViewById(R.id.view5);
+
         }
     }
 
@@ -47,13 +51,16 @@ public class TimeTableAdapter extends RecyclerView.Adapter<TimeTableAdapter.MyVi
         holder.station_name.setText(TT.getTrain_name());
         holder.arrival_time.setText(TT.getArrival_time());
         holder.departure_time.setText(TT.getDeparture_time());
-        if(TT.getVisited())
-        {
-            holder.visited.setBackgroundResource(R.drawable.status_circle_visited);
+        if(live) {
+            if (TT.getVisited()) {
+                holder.visited.setBackgroundResource(R.drawable.status_circle_visited);
+            } else {
+                holder.visited.setBackgroundResource(R.drawable.status_circle);
+            }
         }
-        else
-        {
-            holder.visited.setBackgroundResource(R.drawable.status_circle);
+        else{
+            holder.visited.setVisibility(View.GONE);
+            holder.line.setVisibility(View.GONE);
         }
     }
 
@@ -66,8 +73,9 @@ public class TimeTableAdapter extends RecyclerView.Adapter<TimeTableAdapter.MyVi
     }
 
 
-    public void setRows(List<TimeTableItem> ttlist){
+    public void setRows(List<TimeTableItem> ttlist, boolean live){
         TTList = ttlist;
+        this.live=live;
         notifyDataSetChanged();
     }
 }

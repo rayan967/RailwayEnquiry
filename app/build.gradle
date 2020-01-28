@@ -45,4 +45,5 @@ dependencies {
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.1.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.1.0"
     implementation "androidx.lifecycle:lifecycle-livedata:2.1.0"
+    implementation 'com.azimolabs.keyboardwatcher:keyboardwatcher:0.1.3'
 }

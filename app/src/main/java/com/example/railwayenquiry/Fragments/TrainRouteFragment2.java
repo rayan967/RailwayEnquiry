@@ -101,7 +101,7 @@ public class TrainRouteFragment2 extends Fragment {
         mTTViewModel.getAllRows().observe(this, new Observer<List<TimeTableItem>>() {
             @Override
             public void onChanged(@Nullable final List<TimeTableItem> words) {
-                mAdapter.setRows(words);
+                mAdapter.setRows(words,false);
             }
         });
 

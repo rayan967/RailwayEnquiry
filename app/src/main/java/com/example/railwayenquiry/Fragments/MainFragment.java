@@ -117,6 +117,28 @@ public class MainFragment extends Fragment {
         });
 
 
+        final ImageView imageView3=(ImageView) getView().findViewById(R.id.imageView3);
+        final LinearLayout ll3=(LinearLayout) getView().findViewById(R.id.card3);
+        final TextView tv3=(TextView) getView().findViewById(R.id.textView3);
+
+        ll3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TrainBwStationsFragment simpleFragmentB = TrainBwStationsFragment.newInstance(null,null);
+                simpleFragmentB.setExitTransition(new Slide(Gravity.TOP));
+                FragmentTransaction ft = getFragmentManager().beginTransaction()
+                        .replace(R.id.f1content,simpleFragmentB,"LiveStatusFragment")
+                        .addToBackStack(TAG)
+                        .addSharedElement(ll3, ViewCompat.getTransitionName(ll3));
+                ft.addSharedElement(imageView3,ViewCompat.getTransitionName(imageView3));
+                ft.addSharedElement(tv3,ViewCompat.getTransitionName(tv3));
+                ft.commit();
+            }
+        });
+
+
+
 
 
     }

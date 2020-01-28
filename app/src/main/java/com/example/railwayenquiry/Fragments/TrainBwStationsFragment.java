@@ -6,64 +6,51 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.example.railwayenquiry.R;
-import com.google.android.material.textfield.TextInputLayout;
-
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.transition.Slide;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
-
 import android.transition.TransitionListenerAdapter;
 import android.transition.TransitionManager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.ViewAnimator;
+
+import com.example.railwayenquiry.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
-import static android.content.ContentValues.TAG;
-
-
-
-public class LiveStatusFragment extends Fragment {
-
+public class TrainBwStationsFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    View _rootView;
-
+    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
     private OnFragmentInteractionListener mListener;
 
-    public LiveStatusFragment() {
-        // Required empty public constructor
+    public TrainBwStationsFragment() {
     }
 
-
-    public static LiveStatusFragment newInstance(String param1, String param2) {
-        LiveStatusFragment fragment = new LiveStatusFragment();
+    // TODO: Rename and change types and number of parameters
+    public static TrainBwStationsFragment newInstance(String param1, String param2) {
+        TrainBwStationsFragment fragment = new TrainBwStationsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -73,42 +60,41 @@ public class LiveStatusFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
         setSharedElementReturnTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
         Transition sharedElementEnterTransition = (Transition) getSharedElementEnterTransition();
 
         sharedElementEnterTransition.addListener(new TransitionListenerAdapter() {
             @Override
             public void onTransitionEnd(android.transition.Transition transition) {
                 super.onTransitionEnd(transition);
-                LinearLayout ll = (LinearLayout) getView().findViewById(R.id.livestatuscard);
-                RelativeLayout rl = (RelativeLayout) getView().findViewById(R.id.rl2);
-                Button button = (Button) getView().findViewById(R.id.button);
+             //   LinearLayout ll = (LinearLayout) getView().findViewById(R.id.livestatuscard);
+             //   RelativeLayout rl = (RelativeLayout) getView().findViewById(R.id.rl2);
+              //  Button button = (Button) getView().findViewById(R.id.button);
+
+                ConstraintLayout cl= (ConstraintLayout) getView().findViewById(R.id.animatableLayout);
                 Slide slide = new Slide();
-                TransitionManager.beginDelayedTransition(rl, slide);
-                ll.setVisibility(View.VISIBLE);
-                button.setVisibility(View.VISIBLE);
+                TransitionManager.beginDelayedTransition(cl, slide);
+                cl.setVisibility(View.VISIBLE);
+             //   button.setVisibility(View.VISIBLE);
             }
         });
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if(_rootView==null)
-        _rootView= inflater.inflate(R.layout.fragment_live_status, container, false);
-        return _rootView;
+        return inflater.inflate(R.layout.fragment_train_bw_stations, container, false);
     }
 
-
+    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -116,17 +102,14 @@ public class LiveStatusFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(final View view,
-                              Bundle savedInstanceState)
-    {
-
-        final ScrollView scroll=view.findViewById(R.id.frame);
+    public void onViewCreated(final View view, Bundle savedInstanceState){
+        final ScrollView scroll=view.findViewById(R.id.scrollView);
         view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 Rect r = new Rect();
                 view.getWindowVisibleDisplayFrame(r);
-                if (view.getRootView().getHeight() - (r.bottom - r.top) > 500) { // OnSoftKeyboardVisible
+                if (view.getRootView().getHeight() - (r.bottom - r.top) > 500) {
                     scroll.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -139,36 +122,17 @@ public class LiveStatusFragment extends Fragment {
                 }
             }
         });
-        final AutoCompleteTextView textView = (AutoCompleteTextView) getView().findViewById(R.id.autocomplete_card1);
-        final String[] trains = getResources().getStringArray(R.array.train_list);
-        final List<String> trainlist=new ArrayList<>(Arrays.asList(trains));
+
+        final AutoCompleteTextView textView = (AutoCompleteTextView) getView().findViewById(R.id.autocomplete_card);
+        final AutoCompleteTextView textView2 = (AutoCompleteTextView) getView().findViewById(R.id.autocomplete_card2);
+        final String[] stations = getResources().getStringArray(R.array.stations);
+
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, trains);
+                new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, stations);
+        ArrayAdapter<String> adapter2 =
+                new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, stations);
         textView.setAdapter(adapter);
-
-
-        Button button=(Button) getView().findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
-            {
-
-                String train=textView.getText().toString();
-                if(trainlist.contains(train)) {
-                    LiveStatusFragment2 simpleFragmentB = LiveStatusFragment2.newInstance(null, null);
-                    simpleFragmentB.setEnterTransition(new Slide(Gravity.BOTTOM));
-                    FragmentTransaction ft = getFragmentManager().beginTransaction()
-                            .replace(R.id.f1content, simpleFragmentB)
-                            .addToBackStack(TAG);
-                    ft.commit();
-                }
-                else
-                {
-                    TextInputLayout til = (TextInputLayout) getView().findViewById(R.id.textinputlayout1);
-                    til.setError("\t Please select correct train");
-                }
-            }
-        });
+        textView2.setAdapter(adapter2);
 
 
         final TextView date = (TextView) getView().findViewById(R.id.dateview);
@@ -184,8 +148,6 @@ public class LiveStatusFragment extends Fragment {
         calendaricon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // calender class's instance and get current date , month and year from calender
-                // date picker dialog
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
                         new DatePickerDialog.OnDateSetListener() {
 
@@ -202,6 +164,7 @@ public class LiveStatusFragment extends Fragment {
                 datePickerDialog.show();
             }
         });
+
 
     }
 
@@ -222,18 +185,10 @@ public class LiveStatusFragment extends Fragment {
         mListener = null;
     }
 
-    @Override
-    public void onDestroyView() {
-        if (_rootView.getParent() != null) {
-            ((ViewGroup)_rootView.getParent()).removeView(_rootView);
-        }
-        super.onDestroyView();
-    }
-
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
-}
 
+}

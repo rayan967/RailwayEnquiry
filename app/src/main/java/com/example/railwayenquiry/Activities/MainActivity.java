@@ -8,15 +8,17 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.example.railwayenquiry.Fragments.LiveStatusFragment;
 import com.example.railwayenquiry.Fragments.LiveStatusFragment2;
 import com.example.railwayenquiry.Fragments.MainFragment;
+import com.example.railwayenquiry.Fragments.TrainBwStationsFragment;
 import com.example.railwayenquiry.Fragments.TrainRouteFragment;
 import com.example.railwayenquiry.Fragments.TrainRouteFragment2;
 import com.example.railwayenquiry.R;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener, LiveStatusFragment.OnFragmentInteractionListener, LiveStatusFragment2.OnFragmentInteractionListener, TrainRouteFragment.OnFragmentInteractionListener, TrainRouteFragment2.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener, LiveStatusFragment.OnFragmentInteractionListener, LiveStatusFragment2.OnFragmentInteractionListener, TrainRouteFragment.OnFragmentInteractionListener, TrainRouteFragment2.OnFragmentInteractionListener, TrainBwStationsFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,4 +37,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+
+
+
 }

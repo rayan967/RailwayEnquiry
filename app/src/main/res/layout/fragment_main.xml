@@ -145,7 +145,8 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="-1dp"
                     android:contentDescription="@string/icon"
-                    app:srcCompat="@mipmap/transfer_within_a_station" />
+                    app:srcCompat="@mipmap/transfer_within_a_station"
+                    android:transitionName="trainbwstations"/>
 
                 <TextView
                     android:id="@+id/textView3"
@@ -157,7 +158,8 @@
                     android:layout_marginTop="22dp"
                     android:layout_marginEnd="22dp"
                     android:layout_marginBottom="38dp"
-                    android:text="@string/card3_text" />
+                    android:text="@string/card3_text"
+                    android:transitionName="cardtext3"/>
 
             </LinearLayout>
 
