@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -74,7 +75,7 @@ public class MainFragment extends Fragment {
     {
         final Context context=getActivity();
         final ImageView imageView=(ImageView) getView().findViewById(R.id.imageView);
-        final LinearLayout ll=(LinearLayout) getView().findViewById(R.id.card1);
+        final CardView ll=(CardView) getView().findViewById(R.id.card1);
         final TextView tv=(TextView) getView().findViewById(R.id.textView);
 
         ll.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +98,7 @@ public class MainFragment extends Fragment {
 
 
         final ImageView imageView2=(ImageView) getView().findViewById(R.id.imageView2);
-        final LinearLayout ll2=(LinearLayout) getView().findViewById(R.id.card2);
+        final CardView ll2=(CardView) getView().findViewById(R.id.card2);
         final TextView tv2=(TextView) getView().findViewById(R.id.textView2);
 
         ll2.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +119,7 @@ public class MainFragment extends Fragment {
 
 
         final ImageView imageView3=(ImageView) getView().findViewById(R.id.imageView3);
-        final LinearLayout ll3=(LinearLayout) getView().findViewById(R.id.card3);
+        final CardView ll3=(CardView) getView().findViewById(R.id.card3);
         final TextView tv3=(TextView) getView().findViewById(R.id.textView3);
 
         ll3.setOnClickListener(new View.OnClickListener() {

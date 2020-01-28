@@ -1,5 +1,6 @@
 package com.example.railwayenquiry.Fragments;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.graphics.Rect;
@@ -9,6 +10,8 @@ import android.os.Bundle;
 import com.example.railwayenquiry.R;
 import com.google.android.material.textfield.TextInputLayout;
 
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -26,6 +29,8 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -42,7 +47,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
-
+import static com.example.railwayenquiry.Activities.MainActivity.hideKeyboardFrom;
 
 
 public class LiveStatusFragment extends Fragment {
@@ -73,30 +78,31 @@ public class LiveStatusFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
         setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
         setSharedElementReturnTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
         Transition sharedElementEnterTransition = (Transition) getSharedElementEnterTransition();
 
         sharedElementEnterTransition.addListener(new TransitionListenerAdapter() {
             @Override
             public void onTransitionEnd(android.transition.Transition transition) {
                 super.onTransitionEnd(transition);
-                LinearLayout ll = (LinearLayout) getView().findViewById(R.id.livestatuscard);
-                RelativeLayout rl = (RelativeLayout) getView().findViewById(R.id.rl2);
+                ConstraintLayout cl = (ConstraintLayout) getView().findViewById(R.id.inner_cl);
                 Button button = (Button) getView().findViewById(R.id.button);
                 Slide slide = new Slide();
-                TransitionManager.beginDelayedTransition(rl, slide);
-                ll.setVisibility(View.VISIBLE);
+                TransitionManager.beginDelayedTransition(cl, slide);
+                cl.setVisibility(View.VISIBLE);
                 button.setVisibility(View.VISIBLE);
             }
         });
+
+
 
     }
 
@@ -120,25 +126,6 @@ public class LiveStatusFragment extends Fragment {
                               Bundle savedInstanceState)
     {
 
-        final ScrollView scroll=view.findViewById(R.id.frame);
-        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                Rect r = new Rect();
-                view.getWindowVisibleDisplayFrame(r);
-                if (view.getRootView().getHeight() - (r.bottom - r.top) > 500) { // OnSoftKeyboardVisible
-                    scroll.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            scroll.fullScroll(View.FOCUS_DOWN);
-                        }
-                    },100);
-
-                } else {
-
-                }
-            }
-        });
         final AutoCompleteTextView textView = (AutoCompleteTextView) getView().findViewById(R.id.autocomplete_card1);
         final String[] trains = getResources().getStringArray(R.array.train_list);
         final List<String> trainlist=new ArrayList<>(Arrays.asList(trains));
@@ -146,6 +133,18 @@ public class LiveStatusFragment extends Fragment {
                 new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, trains);
         textView.setAdapter(adapter);
 
+        final TextInputLayout til = (TextInputLayout) getView().findViewById(R.id.textinputlayout1);
+        AutoCompleteTextView actv=view.findViewById(R.id.autocomplete_card1);
+
+        actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View arg1, int pos,
+                                    long id) {
+                hideKeyboardFrom(getContext(),getView());
+                til.setError(null);
+            }
+        });
 
         Button button=(Button) getView().findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener(){
@@ -155,6 +154,8 @@ public class LiveStatusFragment extends Fragment {
 
                 String train=textView.getText().toString();
                 if(trainlist.contains(train)) {
+                    TextInputLayout til = (TextInputLayout) getView().findViewById(R.id.textinputlayout1);
+                    til.setError(null);
                     LiveStatusFragment2 simpleFragmentB = LiveStatusFragment2.newInstance(null, null);
                     simpleFragmentB.setEnterTransition(new Slide(Gravity.BOTTOM));
                     FragmentTransaction ft = getFragmentManager().beginTransaction()
@@ -164,7 +165,6 @@ public class LiveStatusFragment extends Fragment {
                 }
                 else
                 {
-                    TextInputLayout til = (TextInputLayout) getView().findViewById(R.id.textinputlayout1);
                     til.setError("\t Please select correct train");
                 }
             }
@@ -215,6 +215,7 @@ public class LiveStatusFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+
 
     @Override
     public void onDetach() {

@@ -62,7 +62,6 @@ public class TrainBwStationsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
         setSharedElementReturnTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -103,25 +102,6 @@ public class TrainBwStationsFragment extends Fragment {
 
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState){
-        final ScrollView scroll=view.findViewById(R.id.scrollView);
-        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                Rect r = new Rect();
-                view.getWindowVisibleDisplayFrame(r);
-                if (view.getRootView().getHeight() - (r.bottom - r.top) > 500) {
-                    scroll.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            scroll.fullScroll(View.FOCUS_DOWN);
-                        }
-                    },100);
-
-                } else {
-
-                }
-            }
-        });
 
         final AutoCompleteTextView textView = (AutoCompleteTextView) getView().findViewById(R.id.autocomplete_card);
         final AutoCompleteTextView textView2 = (AutoCompleteTextView) getView().findViewById(R.id.autocomplete_card2);

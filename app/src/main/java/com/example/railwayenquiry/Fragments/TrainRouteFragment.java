@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.TranslateAnimation;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -33,6 +34,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
+import static com.example.railwayenquiry.Activities.MainActivity.hideKeyboardFrom;
 
 public class TrainRouteFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -105,25 +107,7 @@ public class TrainRouteFragment extends Fragment {
     public void onViewCreated(final View view, Bundle savedInstanceState)
     {
 
-        final ScrollView scroll=view.findViewById(R.id.scrollView);
-        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                Rect r = new Rect();
-                view.getWindowVisibleDisplayFrame(r);
-                if (view.getRootView().getHeight() - (r.bottom - r.top) > 500) {
-                    scroll.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            scroll.fullScroll(View.FOCUS_DOWN);
-                        }
-                    },100);
 
-                } else {
-
-                }
-            }
-        });
 
 
         final AutoCompleteTextView textView = (AutoCompleteTextView) getView().findViewById(R.id.autocomplete_card2);
@@ -133,6 +117,18 @@ public class TrainRouteFragment extends Fragment {
                 new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, trains);
         textView.setAdapter(adapter);
 
+        final TextInputLayout til = (TextInputLayout) getView().findViewById(R.id.textInputLayout);
+
+
+        textView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View arg1, int pos,
+                                    long id) {
+                hideKeyboardFrom(getContext(),getView());
+                til.setError(null);
+            }
+        });
 
 
         Button button=(Button) getView().findViewById(R.id.button2);
@@ -152,7 +148,6 @@ public class TrainRouteFragment extends Fragment {
                 }
                 else
                 {
-                    TextInputLayout til = (TextInputLayout) getView().findViewById(R.id.textInputLayout);
                     til.setError("\t Please select correct train");
                 }
             }

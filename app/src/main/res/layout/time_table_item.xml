@@ -10,14 +10,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="230dp" />
+        app:layout_constraintGuide_percent="0.56" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="320dp" />
+        app:layout_constraintGuide_percent="0.78" />
 
     <TextView
         android:id="@+id/stationname"
@@ -34,8 +34,8 @@
 
     <TextView
         android:id="@+id/arrivaltime"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="88dp"
+        android:layout_height="37dp"
         android:fontFamily="@font/caviardreamsbold"
         android:gravity="center"
         android:textColor="@color/black"
