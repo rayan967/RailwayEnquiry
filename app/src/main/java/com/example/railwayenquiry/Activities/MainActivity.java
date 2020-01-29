@@ -11,18 +11,19 @@ import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import com.example.railwayenquiry.Fragments.LiveStatusFragment;
 import com.example.railwayenquiry.Fragments.LiveStatusFragment2;
 import com.example.railwayenquiry.Fragments.MainFragment;
+import com.example.railwayenquiry.Fragments.PNRStatusFragment;
+import com.example.railwayenquiry.Fragments.PNRStatusFragment2;
 import com.example.railwayenquiry.Fragments.TrainBwStationsFragment;
 import com.example.railwayenquiry.Fragments.TrainRouteFragment;
 import com.example.railwayenquiry.Fragments.TrainRouteFragment2;
 import com.example.railwayenquiry.R;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener, LiveStatusFragment.OnFragmentInteractionListener, LiveStatusFragment2.OnFragmentInteractionListener, TrainRouteFragment.OnFragmentInteractionListener, TrainRouteFragment2.OnFragmentInteractionListener, TrainBwStationsFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener, LiveStatusFragment.OnFragmentInteractionListener, LiveStatusFragment2.OnFragmentInteractionListener, TrainRouteFragment.OnFragmentInteractionListener, TrainRouteFragment2.OnFragmentInteractionListener, TrainBwStationsFragment.OnFragmentInteractionListener, PNRStatusFragment.OnFragmentInteractionListener, PNRStatusFragment2.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

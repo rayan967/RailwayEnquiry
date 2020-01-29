@@ -17,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.railwayenquiry.R;
@@ -134,6 +133,26 @@ public class MainFragment extends Fragment {
                         .addSharedElement(ll3, ViewCompat.getTransitionName(ll3));
                 ft.addSharedElement(imageView3,ViewCompat.getTransitionName(imageView3));
                 ft.addSharedElement(tv3,ViewCompat.getTransitionName(tv3));
+                ft.commit();
+            }
+        });
+
+        final ImageView imageView4=(ImageView) getView().findViewById(R.id.imageView4);
+        final CardView ll4=(CardView) getView().findViewById(R.id.card4);
+        final TextView tv4=(TextView) getView().findViewById(R.id.textView4);
+
+        ll4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                PNRStatusFragment simpleFragmentB = PNRStatusFragment.newInstance(null,null);
+                simpleFragmentB.setExitTransition(new Slide(Gravity.TOP));
+                FragmentTransaction ft = getFragmentManager().beginTransaction()
+                        .replace(R.id.f1content,simpleFragmentB,"LiveStatusFragment")
+                        .addToBackStack(TAG)
+                        .addSharedElement(ll4, ViewCompat.getTransitionName(ll4));
+                ft.addSharedElement(imageView4,ViewCompat.getTransitionName(imageView4));
+                ft.addSharedElement(tv4,ViewCompat.getTransitionName(tv4));
                 ft.commit();
             }
         });

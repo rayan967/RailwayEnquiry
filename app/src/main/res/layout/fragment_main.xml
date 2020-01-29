@@ -196,12 +196,14 @@
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:id="@+id/card4"
         app:layout_constraintStart_toStartOf="@id/vertical_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/horizontal_guideline1"
         app:layout_constraintBottom_toTopOf="@id/horizontal_guideline2"
         android:layout_margin="12dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="8dp"
+        android:transitionName="card4_transition">
 
 
 
@@ -227,7 +229,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/card4_horizontal_guideline" />
+                app:layout_constraintBottom_toTopOf="@id/card4_horizontal_guideline"
+                android:padding="4dp"
+                android:transitionName="pnrstatus"/>
 
             <TextView
                 android:id="@+id/textView4"
@@ -239,7 +243,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card4_horizontal_guideline" />
+                app:layout_constraintTop_toBottomOf="@id/card4_horizontal_guideline"
+                android:transitionName="cardtext4"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

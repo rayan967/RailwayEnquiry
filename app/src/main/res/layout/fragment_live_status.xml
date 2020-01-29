@@ -89,7 +89,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/horizontal_guideline2"
             app:layout_constraintVertical_bias="1.0"
-            android:visibility="visible">
+            android:visibility="invisible">
 
 
             <View

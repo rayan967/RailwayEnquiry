@@ -3,9 +3,9 @@
     <font
         android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/caviardreamsnormal" />
+        android:font="@font/firasansregular" />
     <font
         android:fontStyle="italic"
         android:fontWeight="400"
-        android:font="@font/caviardreamsitalic" />
+        android:font="@font/firasansitalic" />
 </font-family>

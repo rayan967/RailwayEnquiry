@@ -87,17 +87,16 @@
             android:id="@+id/textView9"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:fontFamily="@font/caviardreams"
+            android:fontFamily="@font/firasans"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="@+id/view2"
             app:layout_constraintEnd_toStartOf="@+id/imageView7"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/view2"
             app:layout_constraintTop_toTopOf="@+id/view2"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintWidth_percent="0.45"
+            app:layout_constraintHeight_percent="0.15"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
@@ -127,17 +126,16 @@
 
         <TextView
             android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/caviardreamsbold"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/firasansbold"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:gravity="center"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="@+id/view3"
             app:layout_constraintStart_toStartOf="@+id/view3"
-            app:layout_constraintTop_toBottomOf="@+id/view"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="@+id/guideline" />
 
         <View
             android:id="@+id/view4"
@@ -153,7 +151,7 @@
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/caviardreams"
+            android:fontFamily="@font/firasans"
             android:text="@string/TTColumn1"
             android:textColor="@color/white"
             android:textSize="16sp"
@@ -168,7 +166,7 @@
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/caviardreams"
+            android:fontFamily="@font/firasans"
             android:text="@string/TTColumn2"
             android:textColor="@color/white"
             android:textSize="16sp"
@@ -183,7 +181,7 @@
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/caviardreams"
+            android:fontFamily="@font/firasans"
             android:text="@string/TTColumn3"
             android:textColor="@color/white"
             android:textSize="16sp"

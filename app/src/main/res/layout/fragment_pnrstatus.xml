@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/screen2"
+    android:transitionName="card4_transition"
+    tools:context=".Fragments.PNRStatusFragment">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.34" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.14" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.17" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.065" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.45" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.67" />
+
+
+        <TextView
+            android:id="@+id/textView6"
+            style="@style/CardText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:text="@string/card4_text"
+            android:textSize="36sp"
+            android:transitionName="cardtext4"
+            app:layout_constraintBottom_toTopOf="@+id/horizontal_guideline1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/vertical_guideline1"
+            app:layout_constraintTop_toTopOf="@+id/horizontal_guideline2" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/icon"
+            android:transitionName="pnrstatus"
+            app:layout_constraintBottom_toTopOf="@+id/horizontal_guideline1"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_guideline1"
+            app:layout_constraintStart_toStartOf="@+id/vertical_guideline2"
+            app:layout_constraintTop_toTopOf="@+id/horizontal_guideline2"
+            app:srcCompat="@mipmap/fare"
+            android:padding="4dp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/horizontal_guideline4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/horizontal_guideline3">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vertical_guideline_inner1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.21" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vertical_guideline_inner2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.78" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/horiontal_guideline_inner1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.65" />
+
+            <View
+                android:id="@+id/view7"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/card_secondary_bg"
+                app:layout_constraintBottom_toTopOf="@+id/horiontal_guideline_inner1"
+                app:layout_constraintEnd_toStartOf="@+id/vertical_guideline_inner2"
+                app:layout_constraintStart_toStartOf="@+id/vertical_guideline_inner1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                style="@style/Theme.App.Base"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:hint="10 Digit PNR No."
+                android:textColorHint="@color/white"
+                android:theme="@style/Theme.App.Base"
+                app:boxStrokeColor="@color/white"
+                app:errorEnabled="true"
+                app:layout_constraintBottom_toBottomOf="@+id/view7"
+                app:layout_constraintEnd_toEndOf="@+id/view7"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/view7"
+                app:layout_constraintTop_toTopOf="@+id/view7"
+                android:layout_marginHorizontal="4dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="number"
+                    android:labelFor="@id/textInputLayout"
+                    android:textColor="@color/white" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_below="@+id/livestatuscard"
+                android:clickable="true"
+                android:foreground="@mipmap/buttonicon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/vertical_guideline_inner2"
+                app:layout_constraintStart_toStartOf="@+id/vertical_guideline_inner1"
+                app:layout_constraintTop_toTopOf="@+id/horiontal_guideline_inner1"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintHeight_percent="0.3"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
