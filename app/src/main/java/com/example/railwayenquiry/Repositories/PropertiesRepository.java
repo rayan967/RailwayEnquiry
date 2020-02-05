@@ -50,8 +50,9 @@ public class PropertiesRepository {
                 int count = 0;
                 if (days.length() == 7)
                     for (int i = 0; i < 7; i++) {
-                        if (days.getJSONObject(i).getString("runs").equalsIgnoreCase("Y"))
+                        if (days.getJSONObject(i).getString("runs").equalsIgnoreCase("Y")) {
                             count++;
+                        }
                     }
                 Log.d("Count: ", Integer.toString(count));
                 if (count == 7)

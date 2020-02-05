@@ -4,9 +4,9 @@
     <string name="card1_text">Live Train Status</string>
     <string name="card1_text_hint">Train Name/No.</string>
     <string name="card2_text">Train Route</string>
-    <string name="card3_text">Train B/W Stations</string>
+    <string name="card3_text">Travel Enquiry</string>
     <string name="card4_text">PNR Status</string>
-    <string name="card5_text">Train Schedule</string>
+    <string name="card5_text">Station Schedule</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="daily">Daily</string>
     <string name="weekly">Weekly</string>
@@ -16,4 +16,6 @@
     <string name="TTColumn1">Station</string>
     <string name="TTColumn2">Arrival</string>
     <string name="TTColumn3">Departure</string>
+    <string name="tab_text_1">Rescheduled</string>
+    <string name="tab_text_2">Cancelled</string>
 </resources>

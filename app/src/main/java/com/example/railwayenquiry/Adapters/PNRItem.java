@@ -2,6 +2,7 @@ package com.example.railwayenquiry.Adapters;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "pnr")
@@ -16,6 +17,8 @@ public class PNRItem {
     public PNRItem(String status) {
         this.status=status;
     }
+
+    @Ignore
     public PNRItem(){}
 
     public String getStatus(){return status;}

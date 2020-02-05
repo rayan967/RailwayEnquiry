@@ -11,7 +11,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.railwayenquiry.Repositories.PropertiesRepository;
+import com.example.railwayenquiry.Repositories.RoutePropertiesRepository;
 import com.example.railwayenquiry.Repositories.TTRepository;
 import com.example.railwayenquiry.Adapters.TimeTableItem;
 
@@ -24,17 +24,17 @@ import java.util.HashMap;
 import java.util.List;
 import android.os.Handler;
 
-public class TTViewModel extends AndroidViewModel {
+public class TrainRouteViewModel extends AndroidViewModel {
     private TTRepository mRepository;
-    private PropertiesRepository mRepository2;
+    private RoutePropertiesRepository mRepository2;
     private LiveData<List<TimeTableItem>> mAllRows;
     public MutableLiveData<HashMap<String, String>> properties= new MutableLiveData<>();
     public MutableLiveData<String> fare;
 
-    public TTViewModel(Application application) {
+    public TrainRouteViewModel(Application application) {
         super(application);
         mRepository = new TTRepository(application);
-        mRepository2=new PropertiesRepository(application);
+        mRepository2=new RoutePropertiesRepository(application);
         mAllRows = mRepository.getAllRows();
         properties=mRepository2.getProperties();
 
@@ -59,5 +59,3 @@ public class TTViewModel extends AndroidViewModel {
         return fare;
     }
 }
-
-

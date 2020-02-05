@@ -1,7 +1,6 @@
 package com.example.railwayenquiry.Fragments;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -18,13 +17,10 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ScrollView;
 
 import com.example.railwayenquiry.R;
 import com.google.android.material.textfield.TextInputLayout;
@@ -36,27 +32,25 @@ import java.util.List;
 import static android.content.ContentValues.TAG;
 import static com.example.railwayenquiry.Activities.MainActivity.hideKeyboardFrom;
 
-public class TrainRouteFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
+public class StationScehduleFragment extends Fragment {
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
-    private View _rootView;
+    View _rootView;
 
     private OnFragmentInteractionListener mListener;
 
-    public TrainRouteFragment() {
-        // Required empty public constructor
+    public StationScehduleFragment() {
+
     }
 
-
-    // TODO: Rename and change types and number of parameters
-    public static TrainRouteFragment newInstance(String param1, String param2) {
-        TrainRouteFragment fragment = new TrainRouteFragment();
+    public static StationScehduleFragment newInstance(String param1, String param2) {
+        StationScehduleFragment fragment = new StationScehduleFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -73,7 +67,6 @@ public class TrainRouteFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
         Transition sharedElementEnterTransition = (Transition) getSharedElementEnterTransition();
         sharedElementEnterTransition.addListener(new TransitionListenerAdapter() {
             @Override
@@ -83,36 +76,28 @@ public class TrainRouteFragment extends Fragment {
                 Slide slide = new Slide(Gravity.BOTTOM);
                 TransitionManager.beginDelayedTransition(cl, slide);
                 cl.setVisibility(View.VISIBLE);
-        }
+            }
         });
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if(_rootView==null)
-        _rootView= inflater.inflate(R.layout.fragment_train_route, container, false);
+            _rootView= inflater.inflate(R.layout.fragment_station_schedule, container, false);
         return _rootView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
-    public void onViewCreated(final View view, Bundle savedInstanceState)
-    {
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
 
 
-        final AutoCompleteTextView textView = (AutoCompleteTextView) getView().findViewById(R.id.autocomplete_card2);
-        final String[] trains = getResources().getStringArray(R.array.train_list);
-        final List<String> trainlist=new ArrayList<>(Arrays.asList(trains));
+        final AutoCompleteTextView textView = (AutoCompleteTextView) getView().findViewById(R.id.autocomplete_card5);
+        final String[] stations = getResources().getStringArray(R.array.stations);
+        final List<String> stationlist = new ArrayList<>(Arrays.asList(stations));
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(getActivity(), R.layout.material_spinner_item, trains);
+                new ArrayAdapter<String>(getActivity(), R.layout.material_spinner_item, stations);
         textView.setAdapter(adapter);
 
         final TextInputLayout til = (TextInputLayout) getView().findViewById(R.id.textInputLayout);
@@ -123,33 +108,41 @@ public class TrainRouteFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View arg1, int pos,
                                     long id) {
-                hideKeyboardFrom(getContext(),getView());
+                hideKeyboardFrom(getContext(), getView());
                 til.setError(null);
             }
         });
 
-
-        Button button=(Button) getView().findViewById(R.id.button2);
+    Button button=(Button) getView().findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
-            {
+        @Override
+        public void onClick(View v)
+        {
 
-                String train=textView.getText().toString();
-                if(trainlist.contains(train)) {
-                    TrainRouteFragment2 simpleFragmentB = TrainRouteFragment2.newInstance(null, null);
-                    simpleFragmentB.setEnterTransition(new Slide(Gravity.BOTTOM));
-                    FragmentTransaction ft = getFragmentManager().beginTransaction()
-                            .replace(R.id.f1content, simpleFragmentB)
-                            .addToBackStack(TAG);
-                    ft.commit();
-                }
-                else
-                {
-                    til.setError("\t Please select correct train");
-                }
+            String station=textView.getText().toString();
+            if(stationlist.contains(station)) {
+                StationScheduleFragment2 simpleFragmentB = StationScheduleFragment2.newInstance(station, null);
+                simpleFragmentB.setEnterTransition(new Slide(Gravity.BOTTOM));
+                FragmentTransaction ft = getFragmentManager().beginTransaction()
+                        .replace(R.id.f1content, simpleFragmentB)
+                        .addToBackStack(TAG);
+
+                ft.commit();
             }
-        });
+            else
+            {
+                til.setError("\t Please select correct station");
+            }
+        }
+    });
+}
+
+
+
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
     }
 
     @Override
@@ -164,19 +157,11 @@ public class TrainRouteFragment extends Fragment {
     }
 
     @Override
-    public void onDestroyView() {
-        if (_rootView.getParent() != null) {
-            ((ViewGroup)_rootView.getParent()).removeView(_rootView);
-        }
-        super.onDestroyView();
-    }
-
-
-    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
+
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);

@@ -130,7 +130,7 @@ public class LiveStatusFragment extends Fragment {
         final String[] trains = getResources().getStringArray(R.array.train_list);
         final List<String> trainlist=new ArrayList<>(Arrays.asList(trains));
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, trains);
+                new ArrayAdapter<String>(getActivity(), R.layout.material_spinner_item, trains);
         textView.setAdapter(adapter);
 
         final TextInputLayout til = (TextInputLayout) getView().findViewById(R.id.textinputlayout1);

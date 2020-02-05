@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/screen2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:transitionName="card5_transition"
+    tools:context=".Fragments.StationScehduleFragment">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline30"
+        app:layout_constraintEnd_toStartOf="@+id/guideline31"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:transitionName="stationschedule"
+        app:srcCompat="@mipmap/schedule"
+        app:layout_constraintHeight_percent="0.1"/>
+
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/CardText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="2dp"
+        android:gravity="center"
+        android:text="@string/card5_text"
+        android:textSize="36sp"
+        android:transitionName="cardtext5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.45" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.67" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.18" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/horizontal_guideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/horizontal_guideline3">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guideline_inner1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.21" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guideline_inner2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.78" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horiontal_guideline_inner1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/card_secondary_bg"
+            app:layout_constraintBottom_toTopOf="@+id/horiontal_guideline_inner1"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_guideline_inner2"
+            app:layout_constraintStart_toStartOf="@+id/vertical_guideline_inner1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            style="@style/Theme.App.Base"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:hint="Station Name/Code"
+            android:textColorHint="@color/white"
+            android:theme="@style/Theme.App.Base"
+            app:boxStrokeColor="@color/white"
+            app:errorEnabled="true"
+            app:layout_constraintBottom_toBottomOf="@+id/view7"
+            app:layout_constraintEnd_toEndOf="@+id/view7"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/view7"
+            app:layout_constraintTop_toTopOf="@+id/view7"
+            android:layout_marginHorizontal="4dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/autocomplete_card5"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+
+                android:completionThreshold="3"
+                android:labelFor="@id/textInputLayout"
+                android:textColor="@color/white" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@+id/livestatuscard"
+            android:clickable="true"
+            android:foreground="@mipmap/buttonicon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_guideline_inner2"
+            app:layout_constraintStart_toStartOf="@+id/vertical_guideline_inner1"
+            app:layout_constraintTop_toTopOf="@+id/horiontal_guideline_inner1"
+            app:layout_constraintWidth_percent="0.25"
+            app:layout_constraintHeight_percent="0.3"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

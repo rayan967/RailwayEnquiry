@@ -5,13 +5,19 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+
+import android.transition.Fade;
+import android.transition.Scene;
 import android.transition.Slide;
+import android.transition.Transition;
 import android.transition.TransitionInflater;
 
+import android.transition.TransitionManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -107,7 +113,7 @@ public class MainFragment extends Fragment {
                 TrainRouteFragment simpleFragmentB = TrainRouteFragment.newInstance(null,null);
                 simpleFragmentB.setExitTransition(new Slide(Gravity.TOP));
                 FragmentTransaction ft = getFragmentManager().beginTransaction()
-                        .replace(R.id.f1content,simpleFragmentB,"LiveStatusFragment")
+                        .replace(R.id.f1content,simpleFragmentB,"TrainRouteFragment")
                         .addToBackStack(TAG)
                         .addSharedElement(ll2, ViewCompat.getTransitionName(ll2));
                 ft.addSharedElement(imageView2,ViewCompat.getTransitionName(imageView2));
@@ -128,7 +134,7 @@ public class MainFragment extends Fragment {
                 TrainBwStationsFragment simpleFragmentB = TrainBwStationsFragment.newInstance(null,null);
                 simpleFragmentB.setExitTransition(new Slide(Gravity.TOP));
                 FragmentTransaction ft = getFragmentManager().beginTransaction()
-                        .replace(R.id.f1content,simpleFragmentB,"LiveStatusFragment")
+                        .replace(R.id.f1content,simpleFragmentB,"TrainBwStationsFragment")
                         .addToBackStack(TAG)
                         .addSharedElement(ll3, ViewCompat.getTransitionName(ll3));
                 ft.addSharedElement(imageView3,ViewCompat.getTransitionName(imageView3));
@@ -148,12 +154,48 @@ public class MainFragment extends Fragment {
                 PNRStatusFragment simpleFragmentB = PNRStatusFragment.newInstance(null,null);
                 simpleFragmentB.setExitTransition(new Slide(Gravity.TOP));
                 FragmentTransaction ft = getFragmentManager().beginTransaction()
-                        .replace(R.id.f1content,simpleFragmentB,"LiveStatusFragment")
+                        .replace(R.id.f1content,simpleFragmentB,"PNRStatus")
                         .addToBackStack(TAG)
                         .addSharedElement(ll4, ViewCompat.getTransitionName(ll4));
                 ft.addSharedElement(imageView4,ViewCompat.getTransitionName(imageView4));
                 ft.addSharedElement(tv4,ViewCompat.getTransitionName(tv4));
                 ft.commit();
+            }
+        });
+
+        final ImageView imageView5=(ImageView) getView().findViewById(R.id.imageView5);
+        final CardView ll5=(CardView) getView().findViewById(R.id.card5);
+        final TextView tv5=(TextView) getView().findViewById(R.id.textView5);
+
+        ll5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                StationScehduleFragment simpleFragmentB = StationScehduleFragment.newInstance(null,null);
+                simpleFragmentB.setExitTransition(new Slide(Gravity.TOP));
+                FragmentTransaction ft = getFragmentManager().beginTransaction()
+                        .replace(R.id.f1content,simpleFragmentB,"StationScehduleFragment")
+                        .addToBackStack(TAG)
+                        .addSharedElement(ll5, ViewCompat.getTransitionName(ll5));
+                ft.addSharedElement(imageView5,ViewCompat.getTransitionName(imageView5));
+                ft.addSharedElement(tv5,ViewCompat.getTransitionName(tv5));
+                ft.commit();
+            }
+        });
+
+        final CardView ll6=(CardView) getView().findViewById(R.id.card6);
+        ll6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RescheduleFragment simpleFragmentB = RescheduleFragment.newInstance(null,null);
+                simpleFragmentB.setExitTransition(new Slide(Gravity.TOP));
+                simpleFragmentB.setEnterTransition(new Fade());
+                FragmentTransaction ft = getFragmentManager().beginTransaction()
+                        .replace(R.id.f1content,simpleFragmentB,"StationScehduleFragment")
+                        .addToBackStack(TAG)
+                        .addSharedElement(ll6, ViewCompat.getTransitionName(ll6));
+                ft.commit();
+
             }
         });
 

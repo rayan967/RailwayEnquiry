@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -26,7 +27,14 @@
         app:layout_constraintGuide_percent="0.66"
         android:orientation="horizontal"/>
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.99"
+        android:orientation="horizontal"/>
+
+            <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:id="@+id/card1"
@@ -36,7 +44,10 @@
         app:layout_constraintBottom_toTopOf="@id/horizontal_guideline1"
         android:layout_margin="12dp"
         app:cardCornerRadius="8dp"
-        android:transitionName="card1_transition">
+        android:transitionName="card1_transition"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -91,7 +102,10 @@
         app:layout_constraintBottom_toTopOf="@id/horizontal_guideline1"
         android:layout_margin="12dp"
         android:transitionName="card2_transition"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -145,7 +159,10 @@
         app:layout_constraintTop_toBottomOf="@id/horizontal_guideline1"
         app:layout_constraintBottom_toTopOf="@id/horizontal_guideline2"
         android:layout_margin="12dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
 
 
 
@@ -203,7 +220,10 @@
         app:layout_constraintBottom_toTopOf="@id/horizontal_guideline2"
         android:layout_margin="12dp"
         app:cardCornerRadius="8dp"
-        android:transitionName="card4_transition">
+        android:transitionName="card4_transition"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
 
 
 
@@ -253,15 +273,19 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card5"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/vertical_guideline"
-        app:layout_constraintTop_toBottomOf="@id/horizontal_guideline2"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_margin="12dp"
-        app:cardCornerRadius="8dp">
-
+        app:cardCornerRadius="8dp"
+        android:transitionName="card5_transition"
+        app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline3"
+        app:layout_constraintEnd_toEndOf="@id/vertical_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_guideline2"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -270,23 +294,24 @@
             android:padding="8dp">
 
             <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/card5_horizontal_guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/card5_horizontal_guideline"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.6"/>
+                app:layout_constraintGuide_percent="0.6" />
 
             <ImageView
                 android:id="@+id/imageView5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:contentDescription="@string/icon"
                 android:layout_gravity="center"
-                app:srcCompat="@mipmap/schedule"
-                app:layout_constraintStart_toStartOf="parent"
+                android:contentDescription="@string/icon"
+                app:layout_constraintBottom_toTopOf="@id/card5_horizontal_guideline"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/card5_horizontal_guideline" />
+                android:transitionName="stationschedule"
+                app:srcCompat="@mipmap/schedule" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -296,9 +321,9 @@
                 android:gravity="center"
                 android:text="@string/card5_text"
                 android:transitionName="cardtext5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card5_horizontal_guideline" />
 
 
@@ -307,4 +332,64 @@
     </androidx.cardview.widget.CardView>
 
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="12dp"
+        app:cardCornerRadius="8dp"
+        android:id="@+id/card6"
+        app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/vertical_guideline"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_guideline2"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:transitionName="card6_transition">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/card6_horizontal_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.6" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/icon"
+                app:layout_constraintBottom_toTopOf="@id/card6_horizontal_guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/reschedule" />
+
+            <TextView
+                android:id="@+id/textView6"
+                style="@style/CardText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="Reschedules and Cancellations"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card6_horizontal_guideline" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
