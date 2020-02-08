@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -37,6 +38,7 @@ import com.example.railwayenquiry.ViewModels.TTViewModel;
 import com.example.railwayenquiry.ViewModels.TrainRouteViewModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
@@ -56,6 +58,9 @@ public class TrainRouteFragment2 extends Fragment implements com.wdullaer.materi
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     List<TimeTableItem> mTTList;
+    TextView date;
+    String classes;
+    String daysofweek;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -123,6 +128,8 @@ public class TrainRouteFragment2 extends Fragment implements com.wdullaer.materi
                 String title=train_number+" - Schedule - "+schedule;
                 Title.setText(title);
                 Log.d("Values",stringHashMap.get("name"));
+                classes=stringHashMap.get("Classes");
+                daysofweek=stringHashMap.get("DaysOfWeek");
             }
         });
 
@@ -152,6 +159,29 @@ public class TrainRouteFragment2 extends Fragment implements com.wdullaer.materi
                         new ArrayAdapter<>(getActivity(), R.layout.material_spinner_item, station_list);
                 textView2.setAdapter(adapter2);
 
+                final AutoCompleteTextView textView3= layout.findViewById(R.id.Class_autocomplete);
+                String[] classes_list={"FC","2A","2S","SL","1A","3A","CC","3E"};
+                List<String> Classes=new ArrayList<>();
+                for(int i=0;i<classes.length();i++){
+                    if(classes.charAt(i)=='Y'){
+                        Classes.add(classes_list[i]);
+                    }
+                }
+                String[] final_classes=new String[Classes.size()];
+                final_classes=Classes.toArray(final_classes);
+                ArrayAdapter<String> adapter3=new ArrayAdapter<>(getActivity(),R.layout.material_spinner_item,final_classes);
+                textView3.setAdapter(adapter3);
+
+
+                int[] weekday_list={Calendar.MONDAY,Calendar.TUESDAY,Calendar.WEDNESDAY,Calendar.THURSDAY,Calendar.FRIDAY,Calendar.SATURDAY,Calendar.SUNDAY};
+                List<Integer> weekdays=new ArrayList<Integer>();
+                for(int i=0;i<daysofweek.length();i++){
+                    if(daysofweek.charAt(i)=='Y'){
+                        weekdays.add(weekday_list[i]);
+                    }
+                }
+
+
 
                 textView1.setOnTouchListener(new View.OnTouchListener(){
                     @Override
@@ -169,8 +199,17 @@ public class TrainRouteFragment2 extends Fragment implements com.wdullaer.materi
                     }
                 });
 
+                textView3.setOnTouchListener(new View.OnTouchListener(){
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event){
+                        textView3.showDropDown();
+                        return false;
+                    }
+                });
 
-                final TextView date = (TextView) layout.findViewById(R.id.dateview);
+
+
+                date = (TextView) layout.findViewById(R.id.dateview);
                 ImageView calendaricon= layout.findViewById(R.id.imageView6);
                 final Calendar c = Calendar.getInstance();
                 final int mYear = c.get(Calendar.YEAR);
@@ -195,22 +234,41 @@ public class TrainRouteFragment2 extends Fragment implements com.wdullaer.materi
                         last_date.add(Calendar.MONTH,4);
                         dpd.setMinDate(now);
                         dpd.setMaxDate(last_date);
+                        Calendar[] last =  new Calendar[1];
+                        last[0] = last_date;
+                        dpd.setDisabledDays(last);
                         dpd.setVersion(DatePickerDialog.Version.VERSION_2);
+
+
+                        for (Calendar loopdate = now; loopdate.before(last_date); loopdate.add(Calendar.DATE, 1)) {
+                            int dayOfWeek = loopdate.get(Calendar.DAY_OF_WEEK);
+                            if (!weekdays.contains(dayOfWeek)) {
+                                Calendar[] disabledDays =  new Calendar[1];
+                                disabledDays[0] = loopdate;
+                                dpd.setDisabledDays(disabledDays);
+                            }
+                        }
+
+
                         dpd.show(getChildFragmentManager(), "Datepickerdialog");
                     }
 
                 });
 
-                new MaterialAlertDialogBuilder(getContext())
+                AlertDialog builder = new MaterialAlertDialogBuilder(getContext())
                         .setTitle("Fare Enquiry")
                         .setView(layout)
-                        .setNegativeButton("Cancel",null)
+                        .setNeutralButton("Cancel",null)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener(){
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 mTTViewModel.getFare().observe(getViewLifecycleOwner(), new Observer<String>() {
                                     @Override
                                     public void onChanged(String s) {
+                                        TextInputEditText age=getView().findViewById(R.id.age);
+                                        if(stations.indexOf(textView1.getText().toString())>stations.indexOf(textView2.getText().toString())||textView1.getText().toString().equals("")
+                                        ||textView2.getText().toString().equals("")||Integer.parseInt(age.getText().toString())>120 || TextUtils.isDigitsOnly(age.getText().toString()) || !Classes.contains(textView3.getText().toString()));
+                                            Log.d("Wrong"," Input");
                                         new MaterialAlertDialogBuilder(getContext())
                                                 .setTitle("Fare Enquiry")
                                                 .setMessage("Fare is Rs. "+s)
@@ -222,6 +280,7 @@ public class TrainRouteFragment2 extends Fragment implements com.wdullaer.materi
                             }
                         })
                         .show();
+
             }
         });
 
@@ -260,7 +319,11 @@ public class TrainRouteFragment2 extends Fragment implements com.wdullaer.materi
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        String date = "You picked the following date: "+dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+        if((monthOfYear+1)<10)
+            date.setText(dayOfMonth + "-0" + (monthOfYear + 1) + "-" + year);
+        else
+            date.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
     }
 
 }

@@ -184,8 +184,8 @@ public class LiveStatusFragment extends Fragment {
         calendaricon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // calender class's instance and get current date , month and year from calender
-                // date picker dialog
+
+
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
                         new DatePickerDialog.OnDateSetListener() {
 
