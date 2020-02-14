@@ -11,10 +11,20 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.railwayenquiry.Adapters.CancelItem;
+import com.example.railwayenquiry.Adapters.TrainItem;
+import com.example.railwayenquiry.BuildConfig;
 
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 @Database(entities = {CancelItem.class}, version = 1, exportSchema = false)
@@ -32,8 +42,10 @@ public abstract class CancelRoomDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             CancelRoomDatabase.class, "cancel_database")
                             .fallbackToDestructiveMigration()
+                            .allowMainThreadQueries()
                             .addCallback(cRoomDatabaseCallback)
                             .build();
+                    INSTANCE.trainDao().deleteAll();
                 }
             }
         }
@@ -62,9 +74,33 @@ public abstract class CancelRoomDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(final Void... params) {
-            try {
 
+            try{
                 mDao.deleteAll();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            String date = sdf.format(new Date());
+            String key= BuildConfig.APIKEY;
+            String url="https://api.railwayapi.com/v2/cancelled/date/"+date+"/apikey/"+key+"/";
+
+
+            Log.d("Request: ",url);
+
+            OkHttpClient client = new OkHttpClient();
+
+            Request request = new Request.Builder()
+                    .get()
+                    .url(url)
+                    .build();
+
+            Response response = client.newCall(request).execute();
+                if(!response.isSuccessful())
+                {
+                    throw new JSONException("Server Not Responding");
+                }
+            String jsonstring3=response.body().string();
+            Log.d("CancelResponse: ",jsonstring3);
+
+
                 JSONObject js = new JSONObject(jsonstring3);
                 JSONArray jsonArray = new JSONArray();
 
@@ -89,6 +125,10 @@ public abstract class CancelRoomDatabase extends RoomDatabase {
                 return null;
             } catch (Exception e) {
                 e.printStackTrace();
+                CancelItem word = new CancelItem("Server Down","Not Available","");
+
+                mDao.insert(word);
+
                 return null;
             }
         }

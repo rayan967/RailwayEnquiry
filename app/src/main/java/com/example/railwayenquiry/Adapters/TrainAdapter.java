@@ -68,7 +68,6 @@ public class TrainAdapter extends RecyclerView.Adapter<TrainAdapter.MyViewHolder
         }
         else if(contextString.equals(contexts[1]))
         {
-            Log.d("StationAdapter:", "Holder");
             RescheduleItem TT = TrainList2.get(position);
             holder.train_name.setText(TT.getTrain_no() + " - " + TT.getTrain_name());
             holder.arrival_time.setText("New Time:\n" + TT.getArrival_time());
@@ -77,10 +76,11 @@ public class TrainAdapter extends RecyclerView.Adapter<TrainAdapter.MyViewHolder
         }
         else if(contextString.equals(contexts[2]))
         {
-            Log.d("CancelAdapter:", "Holder");
             CancelItem TT = TrainList3.get(position);
             holder.train_name.setText(TT.getTrain_no() + " - " + TT.getTrain_name());
             holder.arrival_time.setText("Time:\n" + TT.getArrival_time());
+            holder.departure_time.setText("");
+
         }
     }
 

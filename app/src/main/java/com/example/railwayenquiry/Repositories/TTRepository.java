@@ -8,22 +8,34 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.railwayenquiry.Adapters.TimeTableItem;
+import com.example.railwayenquiry.BuildConfig;
 
 import org.json.JSONObject;
 
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class TTRepository {
     private TTDao mTTDao;
     private LiveData<List<TimeTableItem>> mAllRows;
     public MutableLiveData<String> Fare;
+    String start_station,  destination_station,  age,  Class,  date, train_no;
 
-    public TTRepository(Application application) {
-        TTRoomDatabase db = TTRoomDatabase.getDatabase(application);
+    public TTRepository(Application application,String train_no) {
+        TTRoomDatabase db = TTRoomDatabase.getDatabase(application,train_no);
         mTTDao = db.ttDao();
         mAllRows = mTTDao.getAllRows();
     }
-    public TTRepository(){
+    public TTRepository( String train_no, String start_station, String destination_station, String age, String Class, String date){
+        this.start_station=start_station;
+        this.destination_station=destination_station;
+        this.age=age;
+        this.Class=Class;
+        this.date=date;
+        this.train_no=train_no;
         Fare=new MutableLiveData<>();
     }
     public LiveData<List<TimeTableItem>> getAllRows() {
@@ -70,6 +82,22 @@ public class TTRepository {
         @Override
         protected String doInBackground(final String... params) {
             try {
+                String key= BuildConfig.APIKEY;
+
+                String url="https://api.railwayapi.com/v2/fare/train/"+train_no+"/source/"+start_station+"/dest/"+destination_station+"/age/"+age+"/pref/"+Class+"/quota/GN/date/"+date+"/apikey/"+key+"/";
+                Log.d("FareEnquiry URL:",url);
+
+                OkHttpClient client = new OkHttpClient();
+
+                Request request = new Request.Builder()
+                        .get()
+                        .url(url)
+                        .build();
+
+                Response response = client.newCall(request).execute();
+                String jsonString=response.body().string();
+
+                Log.d("Fareresponse: ",jsonString);
                 JSONObject js = new JSONObject(jsonString);
                 String fare=js.getString("fare");
                 return fare;

@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.railwayenquiry.Adapters.CancelItem;
 import com.example.railwayenquiry.Adapters.TrainAdapter;
 import com.example.railwayenquiry.Adapters.TrainItem;
@@ -60,11 +61,19 @@ public class CPageFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
+        LottieAnimationView animationView=view.findViewById(R.id.animation_view);
+        animationView.playAnimation();
+
+
         CpageViewModel mCpageViewModel = new ViewModelProvider(this).get(CpageViewModel.class);
 
         mCpageViewModel.getAllRows().observe(getViewLifecycleOwner(), new Observer<List<CancelItem>>() {
             @Override
             public void onChanged(@Nullable final List<CancelItem> words) {
+                if(words.size()>0) {
+                    animationView.pauseAnimation();
+                    animationView.setVisibility(View.GONE);
+                }
                 mAdapter.setRows(null,null,words);
             }
         });

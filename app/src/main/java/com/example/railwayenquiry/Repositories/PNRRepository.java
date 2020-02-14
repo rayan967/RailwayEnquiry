@@ -13,8 +13,8 @@ public class PNRRepository {
     private PNRDao mPNRDao;
     private LiveData<List<PNRItem>> mAllRows;
 
-    public PNRRepository(Application application) {
-        PNRRoomDatabase db = PNRRoomDatabase.getDatabase(application);
+    public PNRRepository(Application application, String pnr) {
+        PNRRoomDatabase db = PNRRoomDatabase.getDatabase(application,pnr);
         mPNRDao = db.pnrDao();
         mAllRows = mPNRDao.getAllRows();
     }

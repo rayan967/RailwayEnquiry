@@ -16,9 +16,9 @@ public class TrainViewModel extends AndroidViewModel {
     private LiveData<List<TrainItem>> mAllRows;
 
 
-    public TrainViewModel(Application application) {
+    public TrainViewModel(Application application, String station) {
         super(application);
-        mRepository = new TrainRepository(application);
+        mRepository = new TrainRepository(application,station);
         mAllRows = mRepository.getAllRows();
 
     }

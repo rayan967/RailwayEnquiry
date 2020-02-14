@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.railwayenquiry.Adapters.RescheduleItem;
 import com.example.railwayenquiry.Adapters.TrainAdapter;
 import com.example.railwayenquiry.Adapters.TrainItem;
@@ -59,12 +60,20 @@ public class RPageFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
+
+        LottieAnimationView animationView=view.findViewById(R.id.animation_view);
+        animationView.playAnimation();
+
         RpageViewModel mRpageViewModel = new ViewModelProvider(this).get(RpageViewModel.class);
 
 
         mRpageViewModel.getAllRows().observe(getViewLifecycleOwner(), new Observer<List<RescheduleItem>>() {
             @Override
             public void onChanged(@Nullable final List<RescheduleItem> words) {
+                if(words.size()>0) {
+                    animationView.pauseAnimation();
+                    animationView.setVisibility(View.GONE);
+                }
                 mAdapter.setRows(null,words,null);
             }
         });

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,24 +19,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.railwayenquiry.Adapters.PNRAdapter;
 import com.example.railwayenquiry.Adapters.PNRItem;
 import com.example.railwayenquiry.Adapters.TimeTableItem;
 import com.example.railwayenquiry.R;
+import com.example.railwayenquiry.ViewModelFactory.PNRViewModelFactory;
 import com.example.railwayenquiry.ViewModels.PNRViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link PNRStatusFragment2.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link PNRStatusFragment2#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class PNRStatusFragment2 extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,7 +39,7 @@ public class PNRStatusFragment2 extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private String pnr;
     private String mParam2;
 
     private List<PNRItem> PNRList=new ArrayList<>();
@@ -54,7 +50,6 @@ public class PNRStatusFragment2 extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     public PNRStatusFragment2() {
-        // Required empty public constructor
     }
 
 
@@ -71,7 +66,7 @@ public class PNRStatusFragment2 extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            pnr = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -79,7 +74,6 @@ public class PNRStatusFragment2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_pnrstatus2, container, false);
     }
 
@@ -99,11 +93,21 @@ public class PNRStatusFragment2 extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        mPNRViewModel = ViewModelProviders.of(this).get(PNRViewModel.class);
+        PNRViewModelFactory factory=new PNRViewModelFactory(this.getActivity().getApplication(),pnr);
+        mPNRViewModel = new ViewModelProvider(this,factory).get(PNRViewModel.class);
 
-        mPNRViewModel.getAllRows().observe(this, new Observer<List<PNRItem>>() {
+        LottieAnimationView animationView=view.findViewById(R.id.animation_view);
+        animationView.playAnimation();
+
+
+        mPNRViewModel.getAllRows().observe(getViewLifecycleOwner(), new Observer<List<PNRItem>>() {
             @Override
             public void onChanged(@Nullable final List<PNRItem> words) {
+
+                if(words.size()>0) {
+                    animationView.pauseAnimation();
+                    animationView.setVisibility(View.GONE);
+                }
                 mAdapter.setRows(words,true);
             }
         });

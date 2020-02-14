@@ -48,7 +48,7 @@ public class TimeTableAdapter extends RecyclerView.Adapter<TimeTableAdapter.MyVi
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         TimeTableItem TT = TTList.get(position);
-        holder.station_name.setText(TT.getTrain_name());
+        holder.station_name.setText(TT.getStation_name());
         holder.arrival_time.setText(TT.getArrival_time());
         holder.departure_time.setText(TT.getDeparture_time());
         if(live) {

@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.example.railwayenquiry.R;
+import com.example.railwayenquiry.ViewModels.TTViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 import androidx.cardview.widget.CardView;
@@ -146,17 +147,47 @@ public class LiveStatusFragment extends Fragment {
             }
         });
 
+
+        final TextView date = (TextView) getView().findViewById(R.id.dateview);
+        ImageView calendaricon= getView().findViewById(R.id.imageView6);
+
+        final Calendar c = Calendar.getInstance();
+        final int mYear = c.get(Calendar.YEAR);
+        final int mMonth = c.get(Calendar.MONTH);
+        final int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        date.setText(TTViewModel.getDateString(mYear,mMonth,mDay));
+        calendaricon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                date.setText(TTViewModel.getDateString(year,monthOfYear,dayOfMonth));
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
+            }
+        });
+
+
         Button button=(Button) getView().findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v)
             {
 
+
                 String train=textView.getText().toString();
                 if(trainlist.contains(train)) {
                     TextInputLayout til = (TextInputLayout) getView().findViewById(R.id.textinputlayout1);
                     til.setError(null);
-                    LiveStatusFragment2 simpleFragmentB = LiveStatusFragment2.newInstance(null, null);
+                    LiveStatusFragment2 simpleFragmentB = LiveStatusFragment2.newInstance(train, date.getText().toString());
                     simpleFragmentB.setEnterTransition(new Slide(Gravity.BOTTOM));
                     FragmentTransaction ft = getFragmentManager().beginTransaction()
                             .replace(R.id.f1content, simpleFragmentB)
@@ -170,38 +201,6 @@ public class LiveStatusFragment extends Fragment {
             }
         });
 
-
-        final TextView date = (TextView) getView().findViewById(R.id.dateview);
-        ImageView calendaricon= getView().findViewById(R.id.imageView6);
-        final Calendar c = Calendar.getInstance();
-        final int mYear = c.get(Calendar.YEAR);
-        final int mMonth = c.get(Calendar.MONTH);
-        final int mDay = c.get(Calendar.DAY_OF_MONTH);
-        if((mMonth+1)<10)
-            date.setText(mDay + "-0" + (mMonth+1) + "-" + mYear);
-        else
-            date.setText(mDay + "-" + (mMonth+1) + "-" + mYear);
-        calendaricon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
-                        new DatePickerDialog.OnDateSetListener() {
-
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                if((monthOfYear+1)<10)
-                                    date.setText(dayOfMonth + "-0" + (monthOfYear + 1) + "-" + year);
-                                else
-                                    date.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-
-                            }
-                        }, mYear, mMonth, mDay);
-                datePickerDialog.show();
-            }
-        });
 
     }
 

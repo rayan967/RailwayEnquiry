@@ -30,7 +30,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:elevation="2dp"
-        android:text="Hyderabad Decan - HYB"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:gravity="center"
@@ -49,5 +48,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view15" />
+        app:layout_constraintTop_toBottomOf="@+id/view15"
+        android:background="@color/white"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="70dp"
+        app:lottie_rawRes="@raw/train_load_anim"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        app:layout_constraintTop_toBottomOf="@+id/view15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintWidth_percent="0.7"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

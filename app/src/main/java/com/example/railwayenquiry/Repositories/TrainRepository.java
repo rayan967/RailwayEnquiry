@@ -14,8 +14,8 @@ public class TrainRepository {
     private TrainDao mTrainDao;
     private LiveData<List<TrainItem>> mAllRows;
 
-    public TrainRepository(Application application) {
-        TrainRoomDatabase db = TrainRoomDatabase.getDatabase(application);
+    public TrainRepository(Application application,String station) {
+        TrainRoomDatabase db = TrainRoomDatabase.getDatabase(application,station);
         mTrainDao = db.trainDao();
         mAllRows = mTrainDao.getAllRows();
     }

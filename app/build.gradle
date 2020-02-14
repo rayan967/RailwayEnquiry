@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "PNRAPIKEY", PNRAPIKey)
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [
@@ -25,6 +26,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildTypes.each{
+        it.buildConfigField 'String', 'APIKEY', APIKey
+    }
+
+
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
@@ -52,4 +59,7 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'com.android.support:support-v4:23.0.1'
     implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
+    implementation 'com.squareup.okhttp3:okhttp:4.3.1'
+    implementation "com.airbnb.android:lottie:3.3.1"
+
 }

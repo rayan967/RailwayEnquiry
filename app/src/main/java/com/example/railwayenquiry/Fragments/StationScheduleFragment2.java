@@ -13,14 +13,17 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.railwayenquiry.Adapters.TrainAdapter;
 import com.example.railwayenquiry.Adapters.TrainItem;
 import com.example.railwayenquiry.R;
+import com.example.railwayenquiry.ViewModelFactory.StationViewModelFactory;
 import com.example.railwayenquiry.ViewModels.TrainViewModel;
 
 import java.util.ArrayList;
@@ -32,7 +35,7 @@ public class StationScheduleFragment2 extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
+    private String station;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
@@ -55,7 +58,7 @@ public class StationScheduleFragment2 extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            station = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -78,18 +81,33 @@ public class StationScheduleFragment2 extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        TrainViewModel mTrainViewModel = new ViewModelProvider(this).get(TrainViewModel.class);
+        LottieAnimationView animationView=view.findViewById(R.id.animation_view);
+        animationView.playAnimation();
+
+
+        String[] words=station.split("\\s");
+
+        String station_code=words[words.length-1];
+        Log.d("Split: ",station_code);
+
+        StationViewModelFactory factory=new StationViewModelFactory(getActivity().getApplication(),station_code);
+        TrainViewModel mTrainViewModel = new ViewModelProvider(this,factory).get(TrainViewModel.class);
 
 
         mTrainViewModel.getAllRows().observe(getViewLifecycleOwner(), new Observer<List<TrainItem>>() {
             @Override
             public void onChanged(@Nullable final List<TrainItem> words) {
+
+                if(words.size()>0) {
+                    animationView.pauseAnimation();
+                    animationView.setVisibility(View.GONE);
+                }
                 mAdapter.setRows(words,null,null);
             }
         });
 
         TextView title=view.findViewById(R.id.textView10);
-        title.setText(mParam1);
+        title.setText(station);
 
     }
 

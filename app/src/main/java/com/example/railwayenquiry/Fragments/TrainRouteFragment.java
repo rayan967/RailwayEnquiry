@@ -137,7 +137,7 @@ public class TrainRouteFragment extends Fragment {
 
                 String train=textView.getText().toString();
                 if(trainlist.contains(train)) {
-                    TrainRouteFragment2 simpleFragmentB = TrainRouteFragment2.newInstance(null, null);
+                    TrainRouteFragment2 simpleFragmentB = TrainRouteFragment2.newInstance(train, null);
                     simpleFragmentB.setEnterTransition(new Slide(Gravity.BOTTOM));
                     FragmentTransaction ft = getFragmentManager().beginTransaction()
                             .replace(R.id.f1content, simpleFragmentB)

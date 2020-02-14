@@ -17,18 +17,21 @@ public class TimeTableItem {
     public String departure_time;
     @ColumnInfo(name = "visited")
     public boolean visited;
+    @ColumnInfo(name = "station_code")
+    public String station_code;
 
 
-    public TimeTableItem(String train_name, String arrival_time, String departure_time, boolean visited) {
+    public TimeTableItem(String train_name, String arrival_time, String departure_time, boolean visited, String station_code) {
         this.station_name=train_name;
         this.arrival_time=arrival_time;
         this.departure_time=departure_time;
         this.visited=visited;
+        this.station_code=station_code;
     }
     public TimeTableItem(){}
 
 
-    public String getTrain_name() {
+    public String getStation_name() {
         return station_name;
     }
     public void setTrain_name(String train_name) {
@@ -58,6 +61,9 @@ public class TimeTableItem {
     public void setVisited(boolean visited) {
         this.visited = visited;
     }
+
+    public String getStation_code(){return station_code;}
+    public void setStation_code(String station_code){this.station_code=station_code;}
 
 
 

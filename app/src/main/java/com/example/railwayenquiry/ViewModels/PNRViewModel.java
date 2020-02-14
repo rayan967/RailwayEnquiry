@@ -20,10 +20,10 @@ public class PNRViewModel extends AndroidViewModel {
     private LiveData<List<PNRItem>> mAllRows;
     public MutableLiveData<HashMap<String, String>> properties= new MutableLiveData<>();
 
-    public PNRViewModel(Application application) {
+    public PNRViewModel(Application application, String pnr) {
         super(application);
-        mRepository = new PNRRepository(application);
-        mRepository2=new DetailsRepository(application);
+        mRepository = new PNRRepository(application,pnr);
+        mRepository2=new DetailsRepository(application,pnr);
         mAllRows = mRepository.getAllRows();
         properties=mRepository2.getDetails();
 

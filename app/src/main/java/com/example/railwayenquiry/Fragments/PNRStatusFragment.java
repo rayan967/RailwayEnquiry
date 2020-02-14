@@ -104,7 +104,7 @@ public class PNRStatusFragment extends Fragment {
                 String pnr=textView.getText().toString();
                 if(pnr.length()==10) {
                     til.setError(null);
-                    PNRStatusFragment2 simpleFragmentB = PNRStatusFragment2.newInstance(null, null);
+                    PNRStatusFragment2 simpleFragmentB = PNRStatusFragment2.newInstance(pnr, null);
                     simpleFragmentB.setEnterTransition(new Slide(Gravity.BOTTOM));
                     FragmentTransaction ft = getFragmentManager().beginTransaction()
                             .replace(R.id.f1content, simpleFragmentB)

@@ -2,6 +2,7 @@ package com.example.railwayenquiry.Fragments;
 
 import android.app.Activity;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
@@ -31,9 +32,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.railwayenquiry.Adapters.TimeTableAdapter;
 import com.example.railwayenquiry.Adapters.TimeTableItem;
 import com.example.railwayenquiry.R;
+import com.example.railwayenquiry.ViewModelFactory.FareVMFactory;
+import com.example.railwayenquiry.ViewModelFactory.RouteViewModelFactory;
+import com.example.railwayenquiry.ViewModelFactory.TTViewModelFactory;
 import com.example.railwayenquiry.ViewModels.TTViewModel;
 import com.example.railwayenquiry.ViewModels.TrainRouteViewModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -61,9 +66,10 @@ public class TrainRouteFragment2 extends Fragment implements com.wdullaer.materi
     TextView date;
     String classes;
     String daysofweek;
+    String Train_no;
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private String train;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
@@ -85,7 +91,7 @@ public class TrainRouteFragment2 extends Fragment implements com.wdullaer.materi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            train = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -101,31 +107,47 @@ public class TrainRouteFragment2 extends Fragment implements com.wdullaer.materi
     public void onViewCreated(View view, Bundle savedInstanceState){
         RecyclerView recyclerView = (RecyclerView) getView().findViewById(R.id.recyclerview);
         final TextView Title= getView().findViewById(R.id.textView11);
-        List<TimeTableItem> TTList=new ArrayList<>();
-        final TimeTableAdapter mAdapter = new TimeTableAdapter(TTList);
+        mTTList=new ArrayList<>();
+        final TimeTableAdapter mAdapter = new TimeTableAdapter(mTTList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        final TTViewModel mTTViewModel = new ViewModelProvider(this).get(TTViewModel.class);
+        String[] words=train.split("\\s");
+        String train_no=words[0];
+        final Application app=this.getActivity().getApplication();
 
-        mTTViewModel.getAllRows().observe(getViewLifecycleOwner(), new Observer<List<TimeTableItem>>() {
+        RouteViewModelFactory factory = new RouteViewModelFactory(app, train_no);
+
+        final TrainRouteViewModel mTRViewModel = new ViewModelProvider(this,factory).get(TrainRouteViewModel.class);
+
+        final LottieAnimationView animationView=view.findViewById(R.id.animation_view);
+        animationView.playAnimation();
+
+        mTRViewModel.getAllRows().observe(getViewLifecycleOwner(), new Observer<List<TimeTableItem>>() {
             @Override
             public void onChanged(@Nullable final List<TimeTableItem> words) {
+
+                if(words.size()>0) {
+                    animationView.pauseAnimation();
+                    animationView.setVisibility(View.GONE);
+                }
                 mTTList=words;
                 mAdapter.setRows(words,false);
             }
         });
 
-        final TrainRouteViewModel mTRViewModel = new ViewModelProvider(this).get(TrainRouteViewModel.class);
 
         mTRViewModel.getProperties().observe(getViewLifecycleOwner(), new Observer<HashMap<String, String>>() {
             @Override
             public void onChanged(@Nullable final HashMap<String, String> stringHashMap) {
+                String status=stringHashMap.get("status");
+                String statusmessage=stringHashMap.get("status_message");
                 String train_number=stringHashMap.get("number");
+                Train_no=train_number;
                 String schedule=stringHashMap.get("schedule");
-                String title=train_number+" - Schedule - "+schedule;
+                String title=TrainRouteViewModel.getTitle(train_number,schedule,status,statusmessage);
                 Title.setText(title);
                 Log.d("Values",stringHashMap.get("name"));
                 classes=stringHashMap.get("Classes");
@@ -141,11 +163,8 @@ public class TrainRouteFragment2 extends Fragment implements com.wdullaer.materi
                 LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
                 final View layout = inflater.inflate(R.layout.dialog_box, null);
 
-                String[] station_list=new String[mTTList.size()];
-                for(int i=0;i<mTTList.size();i++)
-                {
-                    station_list[i]=mTTList.get(i).station_name;
-                }
+                String[] station_list=TrainRouteViewModel.getStation_List(mTTList);
+                String[] station_code_list=TrainRouteViewModel.getStation_CodeList(mTTList);
 
 
                 final List<String> stations=new ArrayList<>(Arrays.asList(station_list));
@@ -160,28 +179,17 @@ public class TrainRouteFragment2 extends Fragment implements com.wdullaer.materi
                 textView2.setAdapter(adapter2);
 
                 final AutoCompleteTextView textView3= layout.findViewById(R.id.Class_autocomplete);
-                String[] classes_list={"FC","2A","2S","SL","1A","3A","CC","3E"};
-                List<String> Classes=new ArrayList<>();
-                for(int i=0;i<classes.length();i++){
-                    if(classes.charAt(i)=='Y'){
-                        Classes.add(classes_list[i]);
-                    }
-                }
+
+
+                List<String> Classes=TrainRouteViewModel.getClasses(classes);
                 String[] final_classes=new String[Classes.size()];
                 final_classes=Classes.toArray(final_classes);
+
                 ArrayAdapter<String> adapter3=new ArrayAdapter<>(getActivity(),R.layout.material_spinner_item,final_classes);
                 textView3.setAdapter(adapter3);
 
 
-                int[] weekday_list={Calendar.MONDAY,Calendar.TUESDAY,Calendar.WEDNESDAY,Calendar.THURSDAY,Calendar.FRIDAY,Calendar.SATURDAY,Calendar.SUNDAY};
-                List<Integer> weekdays=new ArrayList<Integer>();
-                for(int i=0;i<daysofweek.length();i++){
-                    if(daysofweek.charAt(i)=='Y'){
-                        weekdays.add(weekday_list[i]);
-                    }
-                }
-
-
+                List<Integer> weekdays=TrainRouteViewModel.getWeekDays(daysofweek);
 
                 textView1.setOnTouchListener(new View.OnTouchListener(){
                     @Override
@@ -211,71 +219,63 @@ public class TrainRouteFragment2 extends Fragment implements com.wdullaer.materi
 
                 date = (TextView) layout.findViewById(R.id.dateview);
                 ImageView calendaricon= layout.findViewById(R.id.imageView6);
-                final Calendar c = Calendar.getInstance();
-                final int mYear = c.get(Calendar.YEAR);
-                final int mMonth = c.get(Calendar.MONTH);
-                final int mDay = c.get(Calendar.DAY_OF_MONTH);
-                if((mMonth+1)<10)
-                    date.setText(mDay + "-0" + (mMonth+1) + "-" + mYear);
-                else
-                    date.setText(mDay + "-" + (mMonth+1) + "-" + mYear);
+
+
+                String dateText=TrainRouteViewModel.getToday();
+                date.setText(dateText);
+
+
                 calendaricon.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-                        Calendar now = Calendar.getInstance();
+                        Calendar now=Calendar.getInstance();
                         DatePickerDialog dpd = DatePickerDialog.newInstance(
                                 TrainRouteFragment2.this,
-                                now.get(Calendar.YEAR), // Initial year selection
-                                now.get(Calendar.MONTH), // Initial month selection
-                                now.get(Calendar.DAY_OF_MONTH) // Inital day selection
+                                now.get(Calendar.YEAR),
+                                now.get(Calendar.MONTH),
+                                now.get(Calendar.DAY_OF_MONTH)
                         );
-                        Calendar last_date=Calendar.getInstance();
-                        last_date.add(Calendar.MONTH,4);
-                        dpd.setMinDate(now);
-                        dpd.setMaxDate(last_date);
-                        Calendar[] last =  new Calendar[1];
-                        last[0] = last_date;
-                        dpd.setDisabledDays(last);
-                        dpd.setVersion(DatePickerDialog.Version.VERSION_2);
-
-
-                        for (Calendar loopdate = now; loopdate.before(last_date); loopdate.add(Calendar.DATE, 1)) {
-                            int dayOfWeek = loopdate.get(Calendar.DAY_OF_WEEK);
-                            if (!weekdays.contains(dayOfWeek)) {
-                                Calendar[] disabledDays =  new Calendar[1];
-                                disabledDays[0] = loopdate;
-                                dpd.setDisabledDays(disabledDays);
-                            }
-                        }
-
-
+                        dpd = TrainRouteViewModel.modifyDatePicker(dpd, now, weekdays);
                         dpd.show(getChildFragmentManager(), "Datepickerdialog");
                     }
 
                 });
+                TextInputEditText age=layout.findViewById(R.id.age);
 
                 AlertDialog builder = new MaterialAlertDialogBuilder(getContext())
                         .setTitle("Fare Enquiry")
                         .setView(layout)
-                        .setNeutralButton("Cancel",null)
+                        .setNegativeButton("Cancel",null)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener(){
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                mTTViewModel.getFare().observe(getViewLifecycleOwner(), new Observer<String>() {
-                                    @Override
-                                    public void onChanged(String s) {
-                                        TextInputEditText age=getView().findViewById(R.id.age);
-                                        if(stations.indexOf(textView1.getText().toString())>stations.indexOf(textView2.getText().toString())||textView1.getText().toString().equals("")
-                                        ||textView2.getText().toString().equals("")||Integer.parseInt(age.getText().toString())>120 || TextUtils.isDigitsOnly(age.getText().toString()) || !Classes.contains(textView3.getText().toString()));
-                                            Log.d("Wrong"," Input");
-                                        new MaterialAlertDialogBuilder(getContext())
-                                                .setTitle("Fare Enquiry")
-                                                .setMessage("Fare is Rs. "+s)
-                                                .setPositiveButton("OK",null)
-                                                .show();
-                                    }
-                                });
+
+                                FareVMFactory factory = new FareVMFactory(app);
+                                if (TrainRouteViewModel.NegativeCondition(stations, textView1, textView2, textView3, age, Classes))
+                                    new MaterialAlertDialogBuilder(getContext())
+                                            .setTitle("Fare Enquiry")
+                                            .setMessage("Please enter correct details")
+                                            .setPositiveButton("OK", null)
+                                            .show();
+                                 else
+                                     {
+                                         animationView.playAnimation();
+                                         TrainRouteViewModel trainRouteViewModel = new ViewModelProvider(getActivity(), factory).get(TrainRouteViewModel.class);
+                                         trainRouteViewModel.getFare(Train_no, station_code_list[stations.indexOf(textView1.getText().toString())], station_code_list[stations.indexOf(textView2.getText().toString())], age.getText().toString(), textView3.getText().toString(), date.getText().toString())
+                                                 .observe(getViewLifecycleOwner(), new Observer<String>() {
+                                             @Override
+                                             public void onChanged(String s) {
+
+                                                 animationView.pauseAnimation();
+                                                 animationView.setVisibility(View.GONE);
+                                                 new MaterialAlertDialogBuilder(getContext())
+                                                         .setTitle("Fare Enquiry")
+                                                         .setMessage("Fare is Rs. " + s)
+                                                         .setPositiveButton("OK", null)
+                                                         .show();
+                                        }
+                                    });
+                                }
 
                             }
                         })

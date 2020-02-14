@@ -43,7 +43,6 @@
         android:layout_height="0dp"
         android:fontFamily="@font/firasans"
         android:gravity="center"
-        android:text="DADAR TEN EXP"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/guideline26"
         app:layout_constraintEnd_toEndOf="@+id/view11"
@@ -56,7 +55,6 @@
         android:layout_height="0dp"
         android:fontFamily="@font/firasans"
         android:gravity="center"
-        android:text="Boarding: 29-01-2020"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/view11"
         app:layout_constraintEnd_toStartOf="@+id/guideline25"
@@ -69,7 +67,6 @@
         android:layout_height="0dp"
         android:fontFamily="@font/firasans"
         android:gravity="center"
-        android:text="SL Class"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/view11"
         app:layout_constraintEnd_toEndOf="@+id/view11"
@@ -151,7 +148,6 @@
         android:layout_height="0dp"
         android:fontFamily="@font/firasans"
         android:gravity="center"
-        android:text="Last Updated: 9-3-2014 15:34"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/guideline28"
         app:layout_constraintEnd_toEndOf="@+id/view11"
@@ -165,11 +161,28 @@
         android:layout_height="0dp"
         android:fontFamily="@font/firasans"
         android:gravity="center"
-        android:text="Charting Status: CHART NOT PREPARED"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/view13"
         app:layout_constraintEnd_toEndOf="@+id/view11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline28" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="70dp"
+        app:lottie_rawRes="@raw/train_load_anim"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        android:background="@drawable/card_main_bg"
+        app:layout_constraintTop_toBottomOf="@+id/guideline29"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintWidth_percent="0.7"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
