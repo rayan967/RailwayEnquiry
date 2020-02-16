@@ -22,12 +22,12 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reschedules" />
+            android:text="@string/reschedules" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancellations" />
+            android:text="@string/cancellations" />
 
     </com.google.android.material.tabs.TabLayout>
     <androidx.viewpager.widget.ViewPager

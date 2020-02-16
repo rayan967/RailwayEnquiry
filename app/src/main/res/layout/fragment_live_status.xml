@@ -160,7 +160,6 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:gravity="center"
-                android:text="16-01-2020"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/view9"
                 app:layout_constraintEnd_toEndOf="@+id/view9"

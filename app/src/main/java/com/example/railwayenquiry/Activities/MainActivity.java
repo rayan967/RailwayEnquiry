@@ -24,15 +24,14 @@ import com.example.railwayenquiry.Fragments.RPageFragment;
 import com.example.railwayenquiry.Fragments.RescheduleFragment;
 import com.example.railwayenquiry.Fragments.StationScehduleFragment;
 import com.example.railwayenquiry.Fragments.StationScheduleFragment2;
-import com.example.railwayenquiry.Fragments.TrainBwStationsFragment;
 import com.example.railwayenquiry.Fragments.TrainRouteFragment;
 import com.example.railwayenquiry.Fragments.TrainRouteFragment2;
 import com.example.railwayenquiry.R;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener, LiveStatusFragment.OnFragmentInteractionListener, LiveStatusFragment2.OnFragmentInteractionListener,
-        TrainRouteFragment.OnFragmentInteractionListener, TrainRouteFragment2.OnFragmentInteractionListener, TrainBwStationsFragment.OnFragmentInteractionListener,
-        PNRStatusFragment.OnFragmentInteractionListener, PNRStatusFragment2.OnFragmentInteractionListener, StationScehduleFragment.OnFragmentInteractionListener,
-        StationScheduleFragment2.OnFragmentInteractionListener, RescheduleFragment.OnFragmentInteractionListener, RPageFragment.OnFragmentInteractionListener, CPageFragment.OnFragmentInteractionListener {
+        TrainRouteFragment.OnFragmentInteractionListener, TrainRouteFragment2.OnFragmentInteractionListener, PNRStatusFragment.OnFragmentInteractionListener,
+        PNRStatusFragment2.OnFragmentInteractionListener, StationScehduleFragment.OnFragmentInteractionListener, StationScheduleFragment2.OnFragmentInteractionListener,
+        RescheduleFragment.OnFragmentInteractionListener, RPageFragment.OnFragmentInteractionListener, CPageFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

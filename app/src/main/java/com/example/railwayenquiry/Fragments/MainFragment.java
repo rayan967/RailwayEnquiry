@@ -123,26 +123,6 @@ public class MainFragment extends Fragment {
         });
 
 
-        final ImageView imageView3=(ImageView) getView().findViewById(R.id.imageView3);
-        final CardView ll3=(CardView) getView().findViewById(R.id.card3);
-        final TextView tv3=(TextView) getView().findViewById(R.id.textView3);
-
-        ll3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                TrainBwStationsFragment simpleFragmentB = TrainBwStationsFragment.newInstance(null,null);
-                simpleFragmentB.setExitTransition(new Slide(Gravity.TOP));
-                FragmentTransaction ft = getFragmentManager().beginTransaction()
-                        .replace(R.id.f1content,simpleFragmentB,"TrainBwStationsFragment")
-                        .addToBackStack(TAG)
-                        .addSharedElement(ll3, ViewCompat.getTransitionName(ll3));
-                ft.addSharedElement(imageView3,ViewCompat.getTransitionName(imageView3));
-                ft.addSharedElement(tv3,ViewCompat.getTransitionName(tv3));
-                ft.commit();
-            }
-        });
-
         final ImageView imageView4=(ImageView) getView().findViewById(R.id.imageView4);
         final CardView ll4=(CardView) getView().findViewById(R.id.card4);
         final TextView tv4=(TextView) getView().findViewById(R.id.textView4);

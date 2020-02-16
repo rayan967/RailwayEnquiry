@@ -145,7 +145,6 @@
             android:id="@+id/button2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_below="@+id/livestatuscard"
             android:clickable="true"
             android:foreground="@mipmap/buttonicon"
             app:layout_constraintBottom_toBottomOf="parent"

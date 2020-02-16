@@ -18,4 +18,10 @@
     <string name="TTColumn3">Departure</string>
     <string name="tab_text_1">Rescheduled</string>
     <string name="tab_text_2">Cancelled</string>
+    <string name="cardtext6">Reschedules and Cancellations</string>
+    <string name="PNRHint">10 Digit PNR No.</string>
+    <string name="PNRPassengerDetailText">Passenger List</string>
+    <string name="reschedules">Reschedules</string>
+    <string name="cancellations">Cancellations</string>
+    <string name="station_schedule_hint">Station Name/Code</string>
 </resources>

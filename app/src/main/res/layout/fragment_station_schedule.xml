@@ -113,7 +113,7 @@
             style="@style/Theme.App.Base"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:hint="Station Name/Code"
+            android:hint="@string/station_schedule_hint"
             android:textColorHint="@color/white"
             android:theme="@style/Theme.App.Base"
             app:boxStrokeColor="@color/white"
