@@ -78,6 +78,12 @@ public class TTViewModel extends AndroidViewModel {
         else
             return train_no+" - Schedule Not Available";
     }
+    public static String getTrain_no(String Train)
+    {
+        String[] words=Train.split("\\s");
+        String train_no=words[0];
+        return train_no;
+    }
 }
 
 

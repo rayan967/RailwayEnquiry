@@ -54,7 +54,7 @@ public class DetailsRepository {
             try{
 
 
-                if(!pnr.equals("1234567890")) {
+                if(!pnr.equals("1234567890")) { //To Demonstrate UI in case 3rd party API is down
                     String key = BuildConfig.PNRAPIKEY;
                     String url = "https://indianrailways.p.rapidapi.com/index.php?pnr=" + pnr;
                     OkHttpClient client = new OkHttpClient();
@@ -81,16 +81,20 @@ public class DetailsRepository {
                 detailList.put("class", js.getJSONObject("journeyDetails").getString("class"));
                 detailList.put("last_updated", js.getString("lastUpdated"));
                 detailList.put("charting_status", js.getString("chartingStatus"));
+                detailList.put("status","SUCCESSFUL");
+                detailList.put("status_message", "200");
                 Log.d("Wpr","w");
                 return detailList;
             }catch (Exception e){
                 Log.e("Exception:",e.toString());
-
                 detailList.put("train_name", "PNR Does Not Exist");
                 detailList.put("boarding_date","Not Available");
                 detailList.put("class", "Not Available");
                 detailList.put("last_updated", "Not Available");
                 detailList.put("charting_status", "Not Available");
+                detailList.put("status","UNSUCCESSFUL");
+                detailList.put("status_message", "PNR Does Not Exist");
+
 
                 return detailList;
             }

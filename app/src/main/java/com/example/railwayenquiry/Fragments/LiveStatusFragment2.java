@@ -2,6 +2,7 @@ package com.example.railwayenquiry.Fragments;
 
 import android.app.ActionBar;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -24,9 +25,11 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.railwayenquiry.R;
 import com.example.railwayenquiry.ViewModelFactory.TTViewModelFactory;
+import com.example.railwayenquiry.ViewModels.MainViewModel;
 import com.example.railwayenquiry.ViewModels.TTViewModel;
 import com.example.railwayenquiry.Adapters.TimeTableAdapter;
 import com.example.railwayenquiry.Adapters.TimeTableItem;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -102,7 +105,7 @@ public class LiveStatusFragment2 extends Fragment {
 
         String[] words=Train.split("\\s");
 
-        final String train_no=words[0];
+        final String train_no=TTViewModel.getTrain_no(Train);
         Log.d("Split: ",train_no);
         Log.d("Date: ",Date);
         String title=train_no+" - Schedule";
@@ -134,8 +137,24 @@ public class LiveStatusFragment2 extends Fragment {
                 String title= TTViewModel.getTitle(train_no,schedule);
                 Title.setText(title);
                 String status=stringHashMap.get("status");
-                status="<b>Status:</b> "+status;
-                Status.setText(Html.fromHtml(status));
+
+                String statusmessage=stringHashMap.get("status_message");
+                if(MainViewModel.isUnsuccessful(status,statusmessage)){
+
+                    new MaterialAlertDialogBuilder(getContext())
+                            .setTitle("Live Status Enquiry")
+                            .setMessage(statusmessage)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    getActivity().onBackPressed();
+                                }
+                            })
+                            .show();
+
+                }
+                statusmessage="<b>Status:</b> "+statusmessage;
+                Status.setText(Html.fromHtml(statusmessage));
                 Log.d("Values",stringHashMap.get("name"));
             }
         });

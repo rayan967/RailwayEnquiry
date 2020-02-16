@@ -58,4 +58,10 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+    }
+
 }

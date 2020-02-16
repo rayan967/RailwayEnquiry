@@ -1,6 +1,7 @@
 package com.example.railwayenquiry.Fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -25,7 +26,9 @@ import com.example.railwayenquiry.Adapters.PNRItem;
 import com.example.railwayenquiry.Adapters.TimeTableItem;
 import com.example.railwayenquiry.R;
 import com.example.railwayenquiry.ViewModelFactory.PNRViewModelFactory;
+import com.example.railwayenquiry.ViewModels.MainViewModel;
 import com.example.railwayenquiry.ViewModels.PNRViewModel;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -113,9 +116,27 @@ public class PNRStatusFragment2 extends Fragment {
         });
 
 
-        mPNRViewModel.getProperties().observe(this, new Observer<HashMap<String, String>>() {
+        mPNRViewModel.getProperties().observe(getViewLifecycleOwner(), new Observer<HashMap<String, String>>() {
             @Override
             public void onChanged(@Nullable final HashMap<String, String> stringHashMap) {
+
+                String status=stringHashMap.get("status");
+
+                String statusmessage=stringHashMap.get("status_message");
+                if(MainViewModel.isUnsuccessful(status,statusmessage)){
+
+                    new MaterialAlertDialogBuilder(getContext())
+                            .setTitle("PNR Enquiry")
+                            .setMessage(statusmessage)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    getActivity().onBackPressed();
+                                }
+                            })
+                            .show();
+
+                }
                 Train_name.setText(Html.fromHtml("<b>"+stringHashMap.get("train_name")+"</b>"));
                 date.setText("Boarding: "+stringHashMap.get("boarding_date"));
                 Class.setText(stringHashMap.get("class")+" Class");

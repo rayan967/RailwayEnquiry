@@ -39,7 +39,6 @@ public class TrainBwStationsFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -48,7 +47,6 @@ public class TrainBwStationsFragment extends Fragment {
     public TrainBwStationsFragment() {
     }
 
-    // TODO: Rename and change types and number of parameters
     public static TrainBwStationsFragment newInstance(String param1, String param2) {
         TrainBwStationsFragment fragment = new TrainBwStationsFragment();
         Bundle args = new Bundle();
@@ -58,6 +56,7 @@ public class TrainBwStationsFragment extends Fragment {
         return fragment;
     }
 
+    // Unreachable Fragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
@@ -74,15 +73,10 @@ public class TrainBwStationsFragment extends Fragment {
             @Override
             public void onTransitionEnd(android.transition.Transition transition) {
                 super.onTransitionEnd(transition);
-             //   LinearLayout ll = (LinearLayout) getView().findViewById(R.id.livestatuscard);
-             //   RelativeLayout rl = (RelativeLayout) getView().findViewById(R.id.rl2);
-              //  Button button = (Button) getView().findViewById(R.id.button);
-
                 ConstraintLayout cl= (ConstraintLayout) getView().findViewById(R.id.animatableLayout);
                 Slide slide = new Slide();
                 TransitionManager.beginDelayedTransition(cl, slide);
                 cl.setVisibility(View.VISIBLE);
-             //   button.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -93,7 +87,6 @@ public class TrainBwStationsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_train_bw_stations, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

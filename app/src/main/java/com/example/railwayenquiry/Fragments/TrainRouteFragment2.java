@@ -39,6 +39,7 @@ import com.example.railwayenquiry.R;
 import com.example.railwayenquiry.ViewModelFactory.FareVMFactory;
 import com.example.railwayenquiry.ViewModelFactory.RouteViewModelFactory;
 import com.example.railwayenquiry.ViewModelFactory.TTViewModelFactory;
+import com.example.railwayenquiry.ViewModels.MainViewModel;
 import com.example.railwayenquiry.ViewModels.TTViewModel;
 import com.example.railwayenquiry.ViewModels.TrainRouteViewModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -114,8 +115,7 @@ public class TrainRouteFragment2 extends Fragment implements com.wdullaer.materi
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        String[] words=train.split("\\s");
-        String train_no=words[0];
+        String train_no=TTViewModel.getTrain_no(train);
         final Application app=this.getActivity().getApplication();
 
         RouteViewModelFactory factory = new RouteViewModelFactory(app, train_no);
@@ -142,11 +142,26 @@ public class TrainRouteFragment2 extends Fragment implements com.wdullaer.materi
         mTRViewModel.getProperties().observe(getViewLifecycleOwner(), new Observer<HashMap<String, String>>() {
             @Override
             public void onChanged(@Nullable final HashMap<String, String> stringHashMap) {
-                String status=stringHashMap.get("status");
-                String statusmessage=stringHashMap.get("status_message");
                 String train_number=stringHashMap.get("number");
                 Train_no=train_number;
                 String schedule=stringHashMap.get("schedule");
+
+                String status=stringHashMap.get("status");
+                String statusmessage=stringHashMap.get("status_message");
+                if(MainViewModel.isUnsuccessful(status,statusmessage)){
+
+                    new MaterialAlertDialogBuilder(getContext())
+                            .setTitle("Route Enquiry")
+                            .setMessage(statusmessage)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    getActivity().onBackPressed();
+                                }
+                            })
+                            .show();
+
+                }
                 String title=TrainRouteViewModel.getTitle(train_number,schedule,status,statusmessage);
                 Title.setText(title);
                 Log.d("Values",stringHashMap.get("name"));

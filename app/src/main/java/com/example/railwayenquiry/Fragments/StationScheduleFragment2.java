@@ -24,6 +24,7 @@ import com.example.railwayenquiry.Adapters.TrainAdapter;
 import com.example.railwayenquiry.Adapters.TrainItem;
 import com.example.railwayenquiry.R;
 import com.example.railwayenquiry.ViewModelFactory.StationViewModelFactory;
+import com.example.railwayenquiry.ViewModels.MainViewModel;
 import com.example.railwayenquiry.ViewModels.TrainViewModel;
 
 import java.util.ArrayList;
@@ -85,10 +86,10 @@ public class StationScheduleFragment2 extends Fragment {
         animationView.playAnimation();
 
 
-        String[] words=station.split("\\s");
 
-        String station_code=words[words.length-1];
+        String station_code= MainViewModel.getStation_code(station);
         Log.d("Split: ",station_code);
+
 
         StationViewModelFactory factory=new StationViewModelFactory(getActivity().getApplication(),station_code);
         TrainViewModel mTrainViewModel = new ViewModelProvider(this,factory).get(TrainViewModel.class);

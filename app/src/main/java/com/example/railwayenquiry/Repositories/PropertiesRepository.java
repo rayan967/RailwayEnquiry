@@ -125,6 +125,7 @@ public class PropertiesRepository {
                 propertyList.put("number", js.getJSONObject("train").getString("number"));
                 propertyList.put("name", js.getJSONObject("train").getString("name"));
                 propertyList.put("status", js.getString("position"));
+                propertyList.put("status_message","");
                 Log.d("Wpr","w");
                 return propertyList;
             }
@@ -134,7 +135,8 @@ public class PropertiesRepository {
                 propertyList.put("schedule", "");
                 propertyList.put("number", "Not Available");
                 propertyList.put("name", "");
-                propertyList.put("status", "Could not process query. Either train doesn't run on that day or it has been discontinued.");
+                propertyList.put("status","UNSUCCESSFUL");
+                propertyList.put("status_message", "Could not process query. Either train doesn't run on that day or it has been discontinued.");
 
                 return propertyList;
             }
