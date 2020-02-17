@@ -6,15 +6,18 @@ Architectural Components via MVVM, data binding through LiveData and persistence
 
 ## Demos  
   
+  
 ```
 Live Train Status  
 ```
 ![alt-text](https://i.ibb.co/m9DFmnc/ezgif-7-28d8dcd62e33.gif)  
   
+  
 ```
 Fare Enquiry  
 ```  
 ![alt-text](https://i.ibb.co/rmS0s6S/ezgif-7-dfaa66e608f2.gif)  
+  
   
 ```
 Hero Animations  
@@ -25,20 +28,24 @@ Hero Animations
   
 ## Screenshots
   
+  
 ```
 Home Screen  
 ```
 ![Image](https://i.ibb.co/wsY22vq/Screenshot-20200217-142054-1581930262-77605.jpg "Home Screen")  
+  
   
 ```
 Train Time Table  
 ```  
 ![Image](https://i.ibb.co/RBHmVWB/Screenshot-20200217-135515-1581930581-59005.jpg "Train Time Table")  
   
+  
 ```
 PNR Status  
 ```
 ![Image](https://i.ibb.co/Tbvy6b9/Screenshot-20200217-144930-1581931276-10127.jpg  "PNR Status Page")  
+  
   
 ```
 Station Schedule  
