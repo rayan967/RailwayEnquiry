@@ -9,4 +9,6 @@ Home Screen
   
 ![Image](https://i.ibb.co/RBHmVWB/Screenshot-20200217-135515-1581930581-59005.jpg "Train Time Table")  
 Train Time Table  
-
+  
+![Image](https://i.ibb.co/C9D4tc4/Screenshot-20200217-135636-1581930841-67399.jpg  "PNR Status Page")  
+PNR Status  
