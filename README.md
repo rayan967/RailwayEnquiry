@@ -7,14 +7,14 @@ Architectural Components via MVVM, data binding through LiveData and persistence
 ## Demos  
   
 ```
-Fare Enquiry  
-```  
-![alt-text](https://i.ibb.co/rmS0s6S/ezgif-7-dfaa66e608f2.gif)  
-  
-```
 Live Train Status  
 ```
 ![alt-text](https://i.ibb.co/m9DFmnc/ezgif-7-28d8dcd62e33.gif)  
+  
+```
+Fare Enquiry  
+```  
+![alt-text](https://i.ibb.co/rmS0s6S/ezgif-7-dfaa66e608f2.gif)  
   
 ```
 Hero Animations  
