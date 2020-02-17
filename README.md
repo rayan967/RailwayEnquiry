@@ -2,7 +2,7 @@
  
 An all-purpose Railway Information Enquiry Android Application.
 The application uses the [RailwayAPI](https://railwayapi.com/) to get real time information about railway schedules, live status of ongoing trains, PNR status, changes in time tables, etc., and provides a rich user interface using animations and transitions. 
-Architectural Components via MVVM, data binding through LiveData and persistence using RoomDatabase is implemented in the application to provide a robust user experience.
+Architectural Components via MVVM, data binding through LiveData, and persistence using RoomDatabase is implemented in the application to provide a robust user experience.
 
 ## Demos  
   
