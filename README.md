@@ -16,5 +16,5 @@ PNR Status
 ![Image](https://i.ibb.co/sWbWJTG/Screenshot-20200217-135652-1581931393-36406.jpg "Station Schedule")  
 Station Schedule  
   
-![alt-text](https://i.ibb.co/PwK5mQb/ezgif-7-be19bc95d8ac.gif)
+![alt-text](https://i.ibb.co/rmS0s6S/ezgif-7-dfaa66e608f2.gif)  
 Fare Enquiry
