@@ -4,5 +4,5 @@
  
 Screenshots:
 
-![Image](https://i.ibb.co/RcMmpHh/Screenshot-20200217-142054.jpg "Home Screen")
+![Image](http://www.resize-photos.com/uploads/output/Screenshot_20200217_142054__1581930182_79504.jpg "Home Screen")
 
