@@ -30,7 +30,6 @@ import okhttp3.Response;
 @Database(entities = {CancelItem.class}, version = 1, exportSchema = false)
 public abstract class CancelRoomDatabase extends RoomDatabase {
     public abstract CancelDao trainDao();
-    public static String jsonstring3="{\"total\": 287, \"response_code\": 200, \"debit\": 1, \"trains\": [{\"number\": \"06521\", \"type\": null, \"dest\": {\"code\": \"DMM\", \"lng\": 77.71261890000001, \"lat\": 14.4137447, \"name\": \"DHARMAVARAM JN\"}, \"source\": {\"code\": \"BNC\", \"lng\": 77.5945627, \"lat\": 12.9715987, \"name\": \"BANGALORE CANT\"}, \"start_time\": \"07:20\", \"name\": \"BNC-DMM MEMU SPECIAL\"}, {\"number\": \"06565\", \"type\": null, \"dest\": {\"code\": \"HUP\", \"lng\": 77.4988753, \"lat\": 13.8185378, \"name\": \"HINDUPUR\"}, \"source\": {\"code\": \"SBC\", \"lng\": 77.5695295, \"lat\": 12.9781291, \"name\": \"KSR BENGALURU\"}, \"start_time\": \"09:30\", \"name\": \"SBC-HUP MEMU SPL\"}, {\"number\": \"06566\", \"type\": null, \"dest\": {\"code\": \"SBC\", \"lng\": 77.5695295, \"lat\": 12.9781291, \"name\": \"KSR BENGALURU\"}, \"source\": {\"code\": \"HUP\", \"lng\": 77.4988753, \"lat\": 13.8185378, \"name\": \"HINDUPUR\"}, \"start_time\": \"13:00\", \"name\": \"HUP-SBC MEMU SPL\"}, {\"number\": \"06571\", \"type\": null, \"dest\": {\"code\": \"HSRA\", \"lng\": 77.8252923, \"lat\": 12.7409127, \"name\": \"HOSUR\"}, \"source\": {\"code\": \"BAND\", \"lng\": 77.6481944, \"lat\": 13.0103761, \"name\": \"BANASWADI\"}, \"start_time\": \"09:50\", \"name\": \"BAND-HSRA DEMU SPL\"}, {\"number\": \"06572\", \"type\": null, \"dest\": {\"code\": \"BAND\", \"lng\": 77.6481944, \"lat\": 13.0103761, \"name\": \"BANASWADI\"}, \"source\": {\"code\": \"HSRA\", \"lng\": 77.8252923, \"lat\": 12.7409127, \"name\": \"HOSUR\"}, \"start_time\": \"11:15\", \"name\": \"HSRA-BAND-DEMU SPL\"}, {\"number\": \"06573\", \"type\": null, \"dest\": {\"code\": \"HSRA\", \"lng\": 77.8252923, \"lat\": 12.7409127, \"name\": \"HOSUR\"}, \"source\": {\"code\": \"BAND\", \"lng\": 77.6481944, \"lat\": 13.0103761, \"name\": \"BANASWADI\"}, \"start_time\": \"12:40\", \"name\": \"BAND-HSRA DEMU SPL\"}, {\"number\": \"06574\", \"type\": null, \"dest\": {\"code\": \"BAND\", \"lng\": 77.6481944, \"lat\": 13.0103761, \"name\": \"BANASWADI\"}, \"source\": {\"code\": \"HSRA\", \"lng\": 77.8252923, \"lat\": 12.7409127, \"name\": \"HOSUR\"}, \"start_time\": \"15:20\", \"name\": \"HSRA-BAND DEMU SPL\"}]}";
     private static CancelRoomDatabase INSTANCE;
 
 
@@ -76,6 +75,8 @@ public abstract class CancelRoomDatabase extends RoomDatabase {
         protected Void doInBackground(final Void... params) {
 
             try{
+                Thread.sleep(5000);
+
                 mDao.deleteAll();
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             String date = sdf.format(new Date());

@@ -31,7 +31,8 @@ import okhttp3.Response;
 public abstract class PNRRoomDatabase extends RoomDatabase {
     public abstract PNRDao pnrDao();
     private static PNRRoomDatabase INSTANCE;
-    public static String jsonstring="{ \"pnr\": \"1234567890\", \"journeyDetails\": { \"trainNumber\": \"22629\", \"trainName\": \"DADAR TEN EXP\", \"boardingDate\": \"2-5-2014\", \"from\": \"DR\", \"to\": \"KKW\", \"reservedUpto\": \"KKW\", \"boardingPoint\": \"DR\", \"class\": \"SL\" }, \"lastUpdated\": \"9-3-2014 15:34\", \"bookingStatus\": [ { \"passengerNo\": \"1\", \"bookingStatus\": \"W/L 171,PQWL\", \"currentStatus\": \"W/L 137\" }, { \"passengerNo\": \"2\", \"bookingStatus\": \"W/L 172,PQWL\", \"currentStatus\": \"W/L 138\" }, { \"passengerNo\": \"3\", \"bookingStatus\": \"W/L 173,PQWL\", \"currentStatus\": \"W/L 139\" }, { \"passengerNo\": \"4\", \"bookingStatus\": \"W/L 174,PQWL\", \"currentStatus\": \"W/L 140\" }, { \"passengerNo\": \"5\", \"bookingStatus\": \"W/L 175,PQWL\", \"currentStatus\": \"W/L 141\" }, { \"passengerNo\": \"6\", \"bookingStatus\": \"W/L 176,PQWL\", \"currentStatus\": \"W/L 142\" } ], \"chartingStatus\": \"CHART NOT PREPARED\" }";
+    public static String jsonstring="{ \"pnr\": \"1234567890\", \"journeyDetails\": { \"trainNumber\": \"22629\", \"trainName\": \"DADAR TEN EXP\", \"boardingDate\": \"05-02-2020\", \"from\": \"DR\", \"to\": \"KKW\", \"reservedUpto\": \"KKW\", \"boardingPoint\": \"DR\", \"class\": \"SL\" }, \"lastUpdated\": \"01-02-2020 15:34\", \"bookingStatus\": [ { \"passengerNo\": \"1\", \"bookingStatus\": \"W/L 171,PQWL\", \"currentStatus\": \"W/L 137\" }, { \"passengerNo\": \"2\", \"bookingStatus\": \"W/L 172,PQWL\", \"currentStatus\": \"W/L 138\" }, { \"passengerNo\": \"3\", \"bookingStatus\": \"W/L 173,PQWL\", \"currentStatus\": \"W/L 139\" }, { \"passengerNo\": \"4\", \"bookingStatus\": \"W/L 174,PQWL\", \"currentStatus\": \"W/L 140\" }, { \"passengerNo\": \"5\", \"bookingStatus\": \"W/L 175,PQWL\", \"currentStatus\": \"W/L 141\" }, { \"passengerNo\": \"6\", \"bookingStatus\": \"W/L 176,PQWL\", \"currentStatus\": \"W/L 142\" } ], \"chartingStatus\": \"CHART NOT PREPARED\" }";
+    //To Demonstrate UI in case 3rd party API is down
 
     public static PNRRoomDatabase getDatabase(final Context context, String pnr) throws IllegalStateException {
             synchronized (PNRRoomDatabase.class) {
@@ -72,7 +73,8 @@ public abstract class PNRRoomDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(final Void... params) {
             try {
-                if(!pnr.equals("1234567890")) {
+
+                if(!pnr.equals("1234567890")) { //To Demonstrate UI in case 3rd party API is down
                     String key = BuildConfig.PNRAPIKEY;
                     String url = "https://indianrailways.p.rapidapi.com/index.php?pnr=" + pnr;
                     OkHttpClient client = new OkHttpClient();
@@ -93,6 +95,8 @@ public abstract class PNRRoomDatabase extends RoomDatabase {
                 }
 
                 Log.d("ResponsePNR: ",jsonstring);
+
+
 
                 JSONObject js = new JSONObject(jsonstring);
 

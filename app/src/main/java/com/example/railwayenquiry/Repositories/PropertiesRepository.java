@@ -22,7 +22,6 @@ import okhttp3.Response;
 public class PropertiesRepository {
 
     private MutableLiveData<HashMap<String,String>> mProperties=new MutableLiveData<>();
-    public static String jsonstring = "{\"train\": {\"classes\": [{\"available\": \"N\", \"name\": \"FIRST CLASS\", \"code\": \"FC\"}, {\"available\": \"Y\", \"name\": \"SECOND AC\", \"code\": \"2A\"}, {\"available\": \"N\", \"name\": \"SECOND SEATING\", \"code\": \"2S\"}, {\"available\": \"Y\", \"name\": \"SLEEPER CLASS\", \"code\": \"SL\"}, {\"available\": \"N\", \"name\": \"FIRST AC\", \"code\": \"1A\"}, {\"available\": \"Y\", \"name\": \"THIRD AC\", \"code\": \"3A\"}, {\"available\": \"N\", \"name\": \"AC CHAIR CAR\", \"code\": \"CC\"}, {\"available\": \"N\", \"name\": \"3rd AC ECONOMY\", \"code\": \"3E\"}], \"number\": \"17031\", \"name\": \"MUMBAI CSMT-HYB EXP\", \"days\": [{\"runs\": \"Y\", \"code\": \"MON\"}, {\"runs\": \"Y\", \"code\": \"TUE\"}, {\"runs\": \"Y\", \"code\": \"WED\"}, {\"runs\": \"Y\", \"code\": \"THU\"}, {\"runs\": \"Y\", \"code\": \"FRI\"}, {\"runs\": \"Y\", \"code\": \"SAT\"}, {\"runs\": \"Y\", \"code\": \"SUN\"}]}, \"status\": {\"scharr_date\": \"Source\", \"actarr\": \"Source\", \"scharr\": \"Source\", \"latemin\": null, \"has_departed\": true, \"has_arrived\": false, \"actarr_date\": \"Source\", \"schdep\": \"12:45\", \"actdep\": \"12:46\"}, \"response_code\": 200, \"position\": \"Departed from Bale at 22:18 22-Jan. 451 Kms. ahead of C Shivaji Maharaj T.\", \"start_date\": \"22-01-2020\", \"station\": {\"lng\": 72.8354475, \"name\": \"C SHIVAJI MAHARAJ T\", \"code\": \"CSMT\", \"lat\": 18.9398446}, \"debit\": 2}";
     String train_no,date,first_station;
     public PropertiesRepository(Application application, String train_no, String date)
     {
@@ -124,8 +123,8 @@ public class PropertiesRepository {
                 propertyList.put("schedule", schedule);
                 propertyList.put("number", js.getJSONObject("train").getString("number"));
                 propertyList.put("name", js.getJSONObject("train").getString("name"));
-                propertyList.put("status", js.getString("position"));
-                propertyList.put("status_message","");
+                propertyList.put("status", "SUCCESSFUL");
+                propertyList.put("status_message",js.getString("position"));
                 Log.d("Wpr","w");
                 return propertyList;
             }

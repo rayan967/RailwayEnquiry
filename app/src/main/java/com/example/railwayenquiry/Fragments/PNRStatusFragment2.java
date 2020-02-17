@@ -101,6 +101,8 @@ public class PNRStatusFragment2 extends Fragment {
 
         LottieAnimationView animationView=view.findViewById(R.id.animation_view);
         animationView.playAnimation();
+        animationView.enableMergePathsForKitKatAndAbove(true);
+
 
 
         mPNRViewModel.getAllRows().observe(getViewLifecycleOwner(), new Observer<List<PNRItem>>() {

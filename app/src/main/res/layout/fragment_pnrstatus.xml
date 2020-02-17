@@ -116,7 +116,6 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout"
-                style="@style/Theme.App.Base"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:hint="@string/PNRHint"
@@ -134,7 +133,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editText"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="44dp"
                     android:inputType="number"
                     android:labelFor="@id/textInputLayout"
                     android:textColor="@color/white" />
