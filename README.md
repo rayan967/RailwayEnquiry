@@ -4,5 +4,5 @@
  
 Screenshots:
 
-![Alt text](https://drive.google.com/file/d/1NhoGgi3YLeLCCEOhunfzCGzwx-m7fql6/view?usp=sharing "Home Screen")
+![Alt text](https://ibb.co/6FpxRsv "Home Screen")
 
