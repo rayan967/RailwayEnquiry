@@ -12,3 +12,6 @@ Train Time Table
   
 ![Image](https://i.ibb.co/Tbvy6b9/Screenshot-20200217-144930-1581931276-10127.jpg  "PNR Status Page")  
 PNR Status  
+  
+![Image}(https://i.ibb.co/sWbWJTG/Screenshot-20200217-135652-1581931393-36406.jpg "Station Schedule")
+Station Schedule
