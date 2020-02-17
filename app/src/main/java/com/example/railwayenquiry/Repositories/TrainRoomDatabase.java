@@ -48,7 +48,7 @@ public abstract class TrainRoomDatabase extends RoomDatabase {
                             TrainRoomDatabase.class, "train_database")
                             .fallbackToDestructiveMigration()
                             .allowMainThreadQueries()
-                            .addCallback(sRoomDatabaseCallback)
+                            .addCallback( sRoomDatabaseCallback )
                             .build();
                 INSTANCE.trainDao().deleteAll();
         }

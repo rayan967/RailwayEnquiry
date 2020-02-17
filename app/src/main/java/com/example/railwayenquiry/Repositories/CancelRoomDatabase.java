@@ -42,7 +42,7 @@ public abstract class CancelRoomDatabase extends RoomDatabase {
                             CancelRoomDatabase.class, "cancel_database")
                             .fallbackToDestructiveMigration()
                             .allowMainThreadQueries()
-                            .addCallback(cRoomDatabaseCallback)
+                            .addCallback( cRoomDatabaseCallback )
                             .build();
                     INSTANCE.trainDao().deleteAll();
                 }

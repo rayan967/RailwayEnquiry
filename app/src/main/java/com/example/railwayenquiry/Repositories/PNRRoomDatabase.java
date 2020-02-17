@@ -52,7 +52,7 @@ public abstract class PNRRoomDatabase extends RoomDatabase {
                             PNRRoomDatabase.class, "pnr_database")
                             .fallbackToDestructiveMigration()
                             .allowMainThreadQueries()
-                            .addCallback(sRoomDatabaseCallback)
+                            .addCallback( sRoomDatabaseCallback )
                             .build();
                 INSTANCE.pnrDao().deleteAll();
 

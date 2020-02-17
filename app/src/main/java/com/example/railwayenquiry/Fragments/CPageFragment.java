@@ -63,7 +63,7 @@ public class CPageFragment extends Fragment {
 
         LottieAnimationView animationView=view.findViewById(R.id.animation_view);
         animationView.playAnimation();
-        animationView.enableMergePathsForKitKatAndAbove(true);
+        animationView.enableMergePathsForKitKatAndAbove( true );
 
 
 

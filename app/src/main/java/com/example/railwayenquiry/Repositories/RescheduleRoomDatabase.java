@@ -42,7 +42,7 @@ public abstract class RescheduleRoomDatabase extends RoomDatabase {
                             RescheduleRoomDatabase.class, "reschedule_database")
                             .fallbackToDestructiveMigration()
                             .allowMainThreadQueries()
-                            .addCallback(rRoomDatabaseCallback)
+                            .addCallback( rRoomDatabaseCallback )
                             .build();
                     INSTANCE.trainDao().deleteAll();
         }

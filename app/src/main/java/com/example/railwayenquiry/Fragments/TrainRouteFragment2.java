@@ -124,7 +124,7 @@ public class TrainRouteFragment2 extends Fragment implements com.wdullaer.materi
 
         final LottieAnimationView animationView=view.findViewById(R.id.animation_view);
         animationView.playAnimation();
-        animationView.enableMergePathsForKitKatAndAbove(true);
+        animationView.enableMergePathsForKitKatAndAbove( true );
 
 
         mTRViewModel.getAllRows().observe(getViewLifecycleOwner(), new Observer<List<TimeTableItem>>() {

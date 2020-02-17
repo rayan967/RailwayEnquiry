@@ -29,7 +29,7 @@ public class PropertiesRepository {
         this.date=date;
         try {
             GetProperties task = new GetProperties();
-            task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            task.executeOnExecutor( AsyncTask.THREAD_POOL_EXECUTOR );
         }
         catch (Exception e)
         {

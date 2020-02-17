@@ -133,7 +133,6 @@
                 android:id="@+id/autocomplete_card2"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
-
                 android:completionThreshold="3"
                 android:labelFor="@id/textInputLayout"
                 android:textColor="@color/white" />
@@ -152,7 +151,6 @@
             app:layout_constraintTop_toTopOf="@+id/horiontal_guideline_inner1"
             app:layout_constraintWidth_percent="0.25"
             app:layout_constraintHeight_percent="0.3"/>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

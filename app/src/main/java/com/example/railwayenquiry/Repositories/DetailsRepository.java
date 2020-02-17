@@ -31,7 +31,7 @@ public class DetailsRepository {
         this.pnr=pnr;
         try {
             GetDetails task = new GetDetails();
-            task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            task.executeOnExecutor( AsyncTask.THREAD_POOL_EXECUTOR );
         }
         catch (Exception e)
         {

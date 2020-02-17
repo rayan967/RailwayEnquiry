@@ -49,7 +49,7 @@ public abstract class TTRoomDatabase extends RoomDatabase {
                             TTRoomDatabase.class, "tt_database")
                             .allowMainThreadQueries()
                             .fallbackToDestructiveMigration()
-                            .addCallback(sRoomDatabaseCallback)
+                            .addCallback( sRoomDatabaseCallback )
                             .build();
                     INSTANCE.ttDao().deleteAll();
             }

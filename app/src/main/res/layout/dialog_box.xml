@@ -95,7 +95,6 @@
         android:textColorHint="@color/black"
         android:theme="@style/Theme.App.Base2"
         app:boxStrokeColor="@color/black"
-        app:errorEnabled="true"
         app:layout_constraintBottom_toTopOf="@id/guideline39"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
