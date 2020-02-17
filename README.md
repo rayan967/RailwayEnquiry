@@ -16,4 +16,4 @@ PNR Status
 ![Image](https://i.ibb.co/sWbWJTG/Screenshot-20200217-135652-1581931393-36406.jpg "Station Schedule")  
 Station Schedule  
   
-![Video](https://srv-file5.gofile.io/download/XMxWKc/ezgif-7-967103764e0d.mp4)  
+![alt-text](https://srv-file5.gofile.io/download/XMxWKc/ezgif-7-967103764e0d.mp4)  
