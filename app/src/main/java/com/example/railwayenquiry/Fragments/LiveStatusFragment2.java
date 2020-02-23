@@ -117,7 +117,6 @@ public class LiveStatusFragment2 extends Fragment {
 
         mTTViewModel = new ViewModelProvider(this,factory).get(TTViewModel.class);
 
-        int flag=0;
         mTTViewModel.getAllRows().observe(getViewLifecycleOwner(), new Observer<List<TimeTableItem>>() {
             @Override
             public void onChanged(@Nullable final List<TimeTableItem> words) {
