@@ -57,10 +57,8 @@ public class TrainAdapter extends RecyclerView.Adapter<TrainAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        Log.d("StationAdapter:", "Holder");
         if(contextString.equals(contexts[0]))
         {
-            Log.d("TrainAdapter:", "Holder");
             TrainItem TT = TrainList.get(position);
             holder.train_name.setText(TT.getTrain_no() + " - " + TT.getTrain_name());
             holder.arrival_time.setText("STA\n" + TT.getArrival_time());
